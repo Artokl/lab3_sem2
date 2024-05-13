@@ -14,15 +14,15 @@ public:
         Re = 0;
         Im = 0;
     }
-    complex(double real, double image)
+    complex(double Real, double Image)
     {
-        Re = real;
-        Im = image;
+        Re = Real;
+        Im = Image;
     }
-    complex(const complex &itemForCopy)
+    complex(const complex &CopyItem)
     {
-        Re = itemForCopy.Re;
-        Im = itemForCopy.Im;
+        Re = CopyItem.Re;
+        Im = CopyItem.Im;
     }
     double GetRe() const {
         return Re;
@@ -31,38 +31,38 @@ public:
         return Im;
     }
     complex operator+(complex item) const {
-        double real = this->Re + item.Re;
-        double image = this->Im + item.Im;
-        complex result(real, image);
+        double Re = this->Re + item.Re;
+        double Im = this->Im + item.Im;
+        complex result(Re, Im);
         return result;
     }
     complex operator-(complex item) const {
-        double real = this->Re - item.Re;
-        double image = this->Im - item.Im;
-        complex result(real, image);
+        double Re = this->Re - item.Re;
+        double Im = this->Im - item.Im;
+        complex result(Re, Im);
         return result;
     }
     complex operator*(complex item) const {
-        double real = this->Re;
-        double image = this->Im;
-        double realRes = real * item.Re - image * item.Im;
-        double imageRes = real * item.Im + image * item.Re;
-        complex result(realRes, imageRes);
+        double Re = this->Re;
+        double Im = this->Im;
+        double ReRes = Re * item.Re - Im * item.Im;
+        double ImRes = Re * item.Im + Im * item.Re;
+        complex result(ReRes, ImRes);
         return result;
     }
     complex operator/(complex item) const {
-        double real = this->Re;
-        double image = this->Im;
-        double realRes = (real * item.Re + image * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
-        double imageRes = (image * item.Re - real * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
-        complex result(realRes, imageRes);
+        double Re = this->Re;
+        double Im = this->Im;
+        double ReRes = (Re * item.Re + Im * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
+        double ImRes = (Im * item.Re - Re * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
+        complex result(ReRes, ImRes);
         return result;
     }
     friend std::istream &operator>>(std::istream &in, complex &item)
     {
-        std::cout << "Enter real part of complex number ";
+        std::cout << "Enter Re part of complex number ";
         in >> item.Re;
-        std::cout << "Enter image part of complex number ";
+        std::cout << "Enter Im part of complex number ";
         in >> item.Im;
         return in;
     }
@@ -85,26 +85,26 @@ public:
     }
     complex &operator-=(complex item)
     {
-        double real = this->Re;
-        double image = this->Im;
-        this->Re = real - item.Re;
-        this->Im = image - item.Im;
+        double Re = this->Re;
+        double Im = this->Im;
+        this->Re = Re - item.Re;
+        this->Im = Im - item.Im;
         return *this;
     }
     complex &operator*=(complex item)
     {
-        double real = this->Re;
-        double image = this->Im;
-        this->Re = real * item.Re - image * item.Im;
-        this->Im = real * item.Im + image * item.Re;
+        double Re = this->Re;
+        double Im = this->Im;
+        this->Re = Re * item.Re - Im * item.Im;
+        this->Im = Re * item.Im + Im * item.Re;
         return *this;
     }
     complex &operator/=(complex item)
     {
-        double real = this->Re;
-        double image = this->Im;
-        this->Re = (real * item.Re + image * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
-        this->Im = (image * item.Re - real * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
+        double Re = this->Re;
+        double Im = this->Im;
+        this->Re = (Re * item.Re + Im * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
+        this->Im = (Im * item.Re - Re * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
         return *this;
     }
     bool operator==(complex item) const {
