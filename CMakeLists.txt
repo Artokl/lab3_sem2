@@ -4,4 +4,11 @@ project(lab_3)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(lab_3 main.cpp
-        Complex.h)
+        Complex.h
+        ListSequence.h
+        DynamicArray.h
+        ArraySequence.h
+        LinkedList.h
+        Sequence.h
+        Vector.h
+        Ui.h)

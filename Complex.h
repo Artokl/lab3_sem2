@@ -24,25 +24,30 @@ public:
         Re = CopyItem.Re;
         Im = CopyItem.Im;
     }
-    double GetRe() const {
+    double GetRe() const
+    {
         return Re;
     }
-    double GetIm() const {
+    double GetIm() const
+    {
         return Im;
     }
-    complex operator+(complex item) const {
+    complex operator+(complex item) const
+    {
         double Re = this->Re + item.Re;
         double Im = this->Im + item.Im;
         complex result(Re, Im);
         return result;
     }
-    complex operator-(complex item) const {
+    complex operator-(complex item) const
+    {
         double Re = this->Re - item.Re;
         double Im = this->Im - item.Im;
         complex result(Re, Im);
         return result;
     }
-    complex operator*(complex item) const {
+    complex operator*(complex item) const
+    {
         double Re = this->Re;
         double Im = this->Im;
         double ReRes = Re * item.Re - Im * item.Im;
@@ -50,19 +55,20 @@ public:
         complex result(ReRes, ImRes);
         return result;
     }
-    complex operator/(complex item) const {
+    complex operator/(complex item) const
+    {
         double Re = this->Re;
         double Im = this->Im;
-        double ReRes = (Re * item.Re + Im * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
-        double ImRes = (Im * item.Re - Re * item.Im) / ((item.Re * (item.Re)) + item.Im * item.Im);
+        double ReRes = (Re * item.Re + Im * item.Im) / (item.Re * item.Re + item.Im * item.Im);
+        double ImRes = (Im * item.Re - Re * item.Im) / (item.Re * item.Re + item.Im * item.Im);
         complex result(ReRes, ImRes);
         return result;
     }
     friend std::istream &operator>>(std::istream &in, complex &item)
     {
-        std::cout << "Enter Re part of complex number ";
+        std::cout << "Enter Re part: ";
         in >> item.Re;
-        std::cout << "Enter Im part of complex number ";
+        std::cout << "Enter Im part: ";
         in >> item.Im;
         return in;
     }
@@ -70,11 +76,11 @@ public:
     {
         if (item.Im < 0)
         {
-            return out << item.Re << "+i" << "(" << item.Im << ")" << " ";
+            return out << item.Re << "-i*" << item.Im << " ";
         }
         else
         {
-            return out << item.Re << "+i" << item.Im << " ";
+            return out << item.Re << "+i*" << item.Im << " ";
         }
     }
     complex &operator+=(complex item)
@@ -103,11 +109,12 @@ public:
     {
         double Re = this->Re;
         double Im = this->Im;
-        this->Re = (Re * item.Re + Im * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
-        this->Im = (Im * item.Re - Re * item.Im) / ((item.Re) * (item.Re) + item.Im * item.Im);
+        this->Re = (Re * item.Re + Im * item.Im) / (item.Re * item.Re + item.Im * item.Im);
+        this->Im = (Im * item.Re - Re * item.Im) / (item.Re * item.Re + item.Im * item.Im);
         return *this;
     }
-    bool operator==(complex item) const {
+    bool operator==(complex item) const
+    {
         if (this->Re == item.Re && this->Im == item.Im)
         {
             return true;
@@ -117,7 +124,8 @@ public:
             return false;
         }
     }
-    bool operator!=(complex item) const {
+    bool operator!=(complex item) const
+    {
         if (this->Re != item.Re || this->Im != item.Im)
         {
             return true;
