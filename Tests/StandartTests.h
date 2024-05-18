@@ -308,7 +308,6 @@ void TestsListSequence()
     TestListSequenceDecompositions();
     TestListSequenceOperations();
 }
-
 void StandartTests()
 {
     TestsDynamicArray();

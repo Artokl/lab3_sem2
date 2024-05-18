@@ -11,10 +11,23 @@ void StartMenu()
     std::cout << "2) RectangularMatrix" << std::endl;
 }
 void PrintMenuVector() {
-
+    std::cout << "0) Return to StartMenu" << std::endl;
+    std::cout << "1) Run tests" << std::endl;
 }
 void PrintMenuMatrix() {
 
+}
+void PrintVector(int Status)
+{
+    if (Status == 0) {
+        std::cout << "Return to StartMenu";
+    }
+    if (Status == 1) {
+        std::cout << "Tests for vector passed" << std::endl;
+    }
+    else {
+        std::cout << "Unknown Programm" << std::endl;
+    }
 }
 void PrintCase(int Status)
 {

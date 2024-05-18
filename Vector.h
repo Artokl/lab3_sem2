@@ -2,7 +2,6 @@
 #define VECTOR_H
 
 #include <cmath>
-
 #include "DynamicArray.h"
 
 template <typename T> class Vector
@@ -45,7 +44,7 @@ template <typename T> class Vector
         {
             Present[i] = this->Get(i) + vec2.Get(i);
         }
-        Vector<T> VecRes = new Vector(Present, this->GetLength());
+        Vector<T> *VecRes = new Vector(Present, this->GetLength());
         return VecRes;
     }
     Vector<T> *vectorMultiOnScalar(const int scalar)
