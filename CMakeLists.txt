@@ -11,4 +11,7 @@ add_executable(lab_3 main.cpp
         LinkedList.h
         Sequence.h
         Vector.h
-        Ui.h)
+        Ui.h
+        Tests/StandartTests.h
+        Tests/VectorTests.h
+        Tests/ComplexTests.h)
