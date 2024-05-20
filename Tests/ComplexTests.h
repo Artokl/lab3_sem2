@@ -39,11 +39,18 @@ void ComplexDiv()
     assert(test3.GetRe() == 1);
     assert(test3.GetIm() == 0);
 }
+void ComplexAbs()
+{
+    complex test(-2,-5);
+    double abs = sqrt((-2)*(-2) + (-5)*(-5));
+    assert(test.abs() == abs);
+}
 void ComplexTests()
 {
     ComplexDiv();
     ComplexMulti();
     ComplexSubtract();
     ComplexSum();
+    ComplexAbs();
 }
 #endif //COMPLEXTESTS_H

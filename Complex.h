@@ -1,6 +1,7 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
+#include <complex>
 #include <iostream>
 
 class complex {
@@ -31,6 +32,10 @@ public:
     {
         return Im;
     }
+    double abs() const
+    {
+        return sqrt(Re * Re + Im * Im);
+    }
     complex operator+(const complex& item) const
     {
         return {this->Re + item.Re, this->Im + item.Im};
@@ -51,9 +56,9 @@ public:
     }
     friend std::istream &operator>>(std::istream &in, complex &item)
     {
-        std::cout << "Enter Re part: ";
+        std::cout << "Enter Re part:\n";
         in >> item.Re;
-        std::cout << "Enter Im part: ";
+        std::cout << "Enter Im part:\n";
         in >> item.Im;
         return in;
     }
@@ -61,11 +66,11 @@ public:
     {
         if (item.Im < 0)
         {
-            return out << item.Re << "-i*" << item.Im << " ";
+            return out << item.Re << "-i*" << item.Im*-1;
         }
         else
         {
-            return out << item.Re << "+i*" << item.Im << " ";
+            return out << item.Re << "+i*" << item.Im;
         }
     }
     complex &operator+=(const complex& item)

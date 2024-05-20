@@ -1,6 +1,6 @@
 #ifndef UI_H
 #define UI_H
-#include <ostream>
+
 #include <iostream>
 
 void StartMenu()
@@ -13,17 +13,38 @@ void StartMenu()
 void PrintMenuVector() {
     std::cout << "0) Return to StartMenu" << std::endl;
     std::cout << "1) Run tests" << std::endl;
+    std::cout << "2) Use functions with int vectors" << std::endl;
+    std::cout << "3) Use functions with complex vectors" << std::endl;
+}
+void PrintFunctionsForVector() {
+    std::cout << "0) Return back" << std::endl;
+    std::cout << "1) VectorSum" << std::endl;
+    std::cout << "2) VectorMultiOnScalar" << std::endl;
+    std::cout << "3) VectorNorm" << std::endl;
+    std::cout << "4) VectorMulti" << std::endl;
 }
 void PrintMenuMatrix() {
-
+    std::cout << "0) Return to StartMenu" << std::endl;
+    std::cout << "1) Run tests" << std::endl;
+}
+void PrintMatrix(int Status) {
+    if (Status == 1) {
+        std::cout << "Tests for matrix passed" << std::endl;
+    }
+    else {
+        std::cout << "Unknown Programm" << std::endl;
+    }
 }
 void PrintVector(int Status)
 {
-    if (Status == 0) {
-        std::cout << "Return to StartMenu";
-    }
     if (Status == 1) {
         std::cout << "Tests for vector passed" << std::endl;
+    }
+    else if (Status == 2) {
+        PrintFunctionsForVector();
+    }
+    else if (Status == 3) {
+        PrintFunctionsForVector();
     }
     else {
         std::cout << "Unknown Programm" << std::endl;

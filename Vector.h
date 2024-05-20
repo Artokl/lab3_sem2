@@ -2,6 +2,8 @@
 #define VECTOR_H
 
 #include <cmath>
+
+#include "Abs.h"
 #include "DynamicArray.h"
 
 template <typename T> class Vector
@@ -47,7 +49,7 @@ template <typename T> class Vector
         Vector<T> *VecRes = new Vector(Present, this->GetLength());
         return VecRes;
     }
-    Vector<T> *vectorMultiOnScalar(const int scalar)
+    Vector<T> *vectorMultiOnScalar(T scalar)
     {
         T *Present = new T[this->GetLength()];
 
@@ -58,18 +60,18 @@ template <typename T> class Vector
         Vector<T> *vecRes = new Vector(Present, this->GetLength());
         return vecRes;
     }
-    static int vectorNorm(const Vector<T> &vec)
+    double vectorNorm()
     {
-        int Present = 0;
-        for (int i = 0; i < vec.GetLength(); i++)
+        double Present = 0;
+        for (int i = 0; i < this->GetLength(); i++)
         {
-            Present += vec.Get(i)*vec.Get(i);
+            double Now = Abs(this->Get(i));
+            Present += Now * Now;
         }
-        int VecNorm = sqrt(Present);
+        double VecNorm = sqrt(Present);
         return VecNorm;
     }
-    Vector<T> *vectorMulti(const Vector<T> &vec2)
-    {
+    Vector<T> *vectorMulti(const Vector<T> &vec2) {
         if (this->GetLength() != vec2.GetLength())
         {
             throw std::invalid_argument("different sizes");
@@ -113,19 +115,21 @@ template <typename T> class Vector
 };
 template <typename T> void VectorShow(Vector<T> &vec)
 {
-    for (int i = 0; i < vec.GetLength(); i++)
+    std::cout << "{";
+    for (int i = 0; i < vec.GetLength() - 1; i++)
     {
-        std::cout << vec.Get(i) << " ";
+        std::cout << vec.Get(i) << ", ";
     }
-    std::cout << std::endl;
+    std::cout << vec.Get(vec.GetLength() - 1) << "}";
 }
 template <typename T> void VectorShow(Vector<T> *vec)
 {
-    for (int i = 0; i < vec->GetLength(); i++)
+    std::cout << "{";
+    for (int i = 0; i < vec->GetLength() - 1; i++)
     {
-        std::cout << vec->Get(i) << " ";
+        std::cout << vec->Get(i) << ", ";
     }
-    std::cout << std::endl;
+    std::cout << vec->Get(vec->GetLength() - 1) << "}";
 }
 
 #endif //VECTOR_H

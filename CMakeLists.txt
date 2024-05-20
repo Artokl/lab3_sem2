@@ -14,4 +14,5 @@ add_executable(lab_3 main.cpp
         Ui.h
         Tests/StandartTests.h
         Tests/VectorTests.h
-        Tests/ComplexTests.h)
+        Tests/ComplexTests.h
+        abs.h)
