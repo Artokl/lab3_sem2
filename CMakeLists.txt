@@ -15,4 +15,6 @@ add_executable(lab_3 main.cpp
         Tests/StandartTests.h
         Tests/VectorTests.h
         Tests/ComplexTests.h
-        abs.h)
+        abs.h
+        RectangularMatrix.h
+        Tests/MatrixTests.h)

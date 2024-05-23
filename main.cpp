@@ -1,9 +1,11 @@
 #include <iostream>
+
+#include "RectangularMatrix.h"
 #include "Ui.h"
 #include "Tests/StandartTests.h"
 #include "Tests/ComplexTests.h"
 #include "Tests/VectorTests.h"
-
+#include "Tests/MatrixTests.h"
 
 int main()
 {
@@ -52,6 +54,9 @@ int main()
                             while (Flag2 != 0)
                             {
                                 std::cin >> Status1;
+                                int len1, len2;
+                                int a, b;
+                                int len;
                                 switch (Status1)
                                 {
                                     case 0:
@@ -61,8 +66,6 @@ int main()
                                     }
                                     case 1:
                                     {
-                                        int len1, len2;
-                                        int a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
                                         std::cout << "Write the length of the second vector:\n";
@@ -96,8 +99,6 @@ int main()
                                     }
                                     case 2:
                                     {
-                                        int len;
-                                        int a;
                                         std::cout << "Write the length of vector:\n";
                                         std::cin >> len;
                                         auto arr = new int[len];
@@ -119,8 +120,6 @@ int main()
                                     }
                                     case 3:
                                     {
-                                        int len;
-                                        int a;
                                         std::cout << "Write the length of vector:\n";
                                         std::cin >> len;
                                         auto arr = new int[len];
@@ -137,8 +136,6 @@ int main()
                                     }
                                     case 4:
                                     {
-                                        int len1, len2;
-                                        int a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
                                         std::cout << "Write the length of the second vector:\n";
@@ -190,6 +187,8 @@ int main()
                             while (Flag3 != 0)
                             {
                                 std::cin >> Status2;
+                                int len1, len2;
+                                int len;
                                 switch (Status2)
                                 {
                                     case 0:
@@ -199,7 +198,6 @@ int main()
                                     }
                                     case 1:
                                     {
-                                        int len1, len2;
                                         complex a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
@@ -234,7 +232,6 @@ int main()
                                     }
                                     case 2:
                                     {
-                                        int len;
                                         complex a;
                                         std::cout << "Write length of vector:\n";
                                         std::cin >> len;
@@ -257,7 +254,6 @@ int main()
                                     }
                                     case 3:
                                     {
-                                        int len;
                                         complex a;
                                         std::cout << "Write the length of vector:\n";
                                         std::cin >> len;
@@ -275,7 +271,6 @@ int main()
                                     }
                                     case 4:
                                     {
-                                        int len1, len2;
                                         complex a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
@@ -335,9 +330,25 @@ int main()
             case 2:
             {
                 int Status = 0;
+                int Flag3 = 1;
                 PrintCase(2);
-                std::cin >> Status;
-                break;
+                while (Flag3 != 0)
+                {
+                    std::cin >> Status;
+                    switch (Status) {
+                        case 0:
+                        {
+                            Flag3 = 0;
+                            break;
+                        }
+                        case 1:
+                        {
+                            MatrixTests();
+                            PrintMatrix(1);
+                            break;
+                        }
+                    }
+                }
             }
             default:
             {

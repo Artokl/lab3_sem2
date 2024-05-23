@@ -50,6 +50,10 @@ public:
     {
         return this->array->Get(index);
     }
+    T Get(int index) const
+    {
+        return this->array->Get(index);
+    }
     int GetLength() override
     {
         return this->array->GetSize();
@@ -107,6 +111,23 @@ public:
               presentResult->Append (this->Get (i));
           }
         return presentResult;
+    }
+/*    MutableArraySequence<T> *Append(const MutableArraySequence<T> &item)  {
+        MutableArraySequence<T> *result = new MutableArraySequence<T> ();
+        result->array->elements[result->array->GetSize()] = item;
+        return result;
+    }*/
+    MutableArraySequence<T> *Append(const MutableArraySequence<T>& other)  {
+        int originalSize = this->array->GetSize();
+        int otherSize = other.GetLength();
+        MutableArraySequence<T> *result = new MutableArraySequence<T> (originalSize + otherSize);
+        for (int i = 0; i < originalSize; i++) {
+            result->array->Set(this->Get(i), i);
+        }
+        for (int i = 0; i < otherSize; i++) {
+            result->array->Set(this->Get(i), otherSize + i);
+        }
+        return result;
     }
 };
 
