@@ -189,6 +189,7 @@ int main()
                                 std::cin >> Status2;
                                 int len1, len2;
                                 int len;
+                                complex a, b;
                                 switch (Status2)
                                 {
                                     case 0:
@@ -198,7 +199,6 @@ int main()
                                     }
                                     case 1:
                                     {
-                                        complex a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
                                         std::cout << "Write the length of the second vector:\n";
@@ -232,7 +232,6 @@ int main()
                                     }
                                     case 2:
                                     {
-                                        complex a;
                                         std::cout << "Write length of vector:\n";
                                         std::cin >> len;
                                         auto arr = new complex[len];
@@ -254,7 +253,6 @@ int main()
                                     }
                                     case 3:
                                     {
-                                        complex a;
                                         std::cout << "Write the length of vector:\n";
                                         std::cin >> len;
                                         auto arr = new complex[len];
@@ -271,7 +269,6 @@ int main()
                                     }
                                     case 4:
                                     {
-                                        complex a, b;
                                         std::cout << "Write the length of the first vector:\n";
                                         std::cin >> len1;
                                         std::cout << "Write the length of the second vector:\n";
@@ -347,8 +344,640 @@ int main()
                             PrintMatrix(1);
                             break;
                         }
+                        case 2:
+                        {
+                            int Status1 = 0;
+                            int Flag4 = 1;
+                            PrintMatrix(2);
+                            while (Flag4 != 0) {
+                                std::cin >> Status1;
+                                unsigned int row1, col1;
+                                int a;
+                                switch (Status1) {
+                                    case 0:
+                                    {
+                                        Flag4 = 0;
+                                        break;
+                                    }
+                                    case 1:
+                                    {
+                                        int  b;
+                                        unsigned int row2, col2;
+                                        std::cout << "Write the number of rows of the first matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the first matrix:\n";
+                                        std::cin >> col1;
+                                        std::cout << "Write the number of rows of the second matrix:\n";
+                                        std::cin >> row2;
+                                        std::cout << "Write the number of columns of the second matrix:\n";
+                                        std::cin >> col2;
+                                        if (row1 != row2 || col1 != col2)
+                                        {
+                                            std::cout << "Different sizes, error" << std::endl;
+                                            break;
+                                        }
+                                        auto arr1 = new int[row1 * col1];
+                                        auto arr2 = new int[row2 * col2];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the first matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        for (int i = 0; i < row2; i++) {
+                                            for (int j = 0; j < col2; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the second matrix:\n";
+                                                std::cin >> b;
+                                                arr2[i*col2 + j] = b;
+                                            }
+                                        }
+                                        Matrix<int> test1(arr1, row1, col1);
+                                        Matrix<int> test2(arr2, row2, col2);
+                                        Matrix<int> *test3 = test1 + test2;
+                                        std::cout << "Result matrix:\n";
+                                        MatrixShow(test3);
+                                        break;
+                                    }
+                                    case 2:
+                                    {
+                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cin >> col1;
+                                        auto arr1 = new int[row1 * col1];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        Matrix<int> test1(arr1, row1, col1);
+                                        int scalar;
+                                        std::cout << "Enter scalar in int form:\n";
+                                        std::cin >> scalar;
+                                        Matrix<int> *test3 = test1 * scalar;
+                                        std::cout << "Result matrix:\n";
+                                        MatrixShow(test3);
+                                        break;
+                                    }
+                                    case 3:
+                                    {
+                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cin >> col1;
+                                        auto arr1 = new int[row1 * col1];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        Matrix<int> test1(arr1, row1, col1);
+                                        double Norm;
+                                        Norm = test1.MatrixNorm();
+                                        std::cout << "Result matrix: " << Norm << std::endl;
+                                        break;
+                                    }
+                                    case 4:
+                                    {
+                                        PrintStringConversions();
+                                        int Status2 = 0;
+                                        int Flag5 = 1;
+                                        while (Flag5 != 0) {
+                                            std::cin >> Status2;
+                                            switch (Status2) {
+                                                case 0:
+                                                {
+                                                    Flag5 = 0;
+                                                    break;
+                                                }
+                                                case 1:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    unsigned int row_1, row_2;
+                                                    std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                    std::cin >> row_1 >> row_2;
+                                                    test1.swapRows(row_1 - 1, row_2 - 1);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 2:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    int scalar;
+                                                    unsigned int row_1;
+                                                    std::cout << "Enter scalar in int form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter the row you want to multiply:\n";
+                                                    std::cin >> row_1;
+                                                    test1.multiplyRow(row_1 - 1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 3:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    int scalar;
+                                                    unsigned int row_1, row_2;
+                                                    std::cout << "Enter scalar in int form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                    std::cin >> row_1 >> row_2;
+                                                    test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                default:
+                                                {
+                                                    std::cout << "Unknown programm" << std::endl;
+                                                }
+                                            }
+                                            if (Status2 != 0)
+                                            {
+                                                PrintStringConversions();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    case 5:
+                                    {
+                                        PrintColumnConversions();
+                                        int Status2 = 0;
+                                        int Flag5 = 1;
+                                        while (Flag5 != 0) {
+                                            std::cin >> Status2;
+                                            switch (Status2) {
+                                                case 0:
+                                                {
+                                                    Flag5 = 0;
+                                                    break;
+                                                }
+                                                case 1:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    unsigned int col_1, col_2;
+                                                    std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                    std::cin >> col_1 >> col_2;
+                                                    test1.swapCols(col_1 - 1, col_2 - 1);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 2:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    int scalar;
+                                                    unsigned int col_1;
+                                                    std::cout << "Enter scalar in int form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter the col you want to multiply:\n";
+                                                    std::cin >> col_1;
+                                                    test1.multiplyCol(col_1 - 1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 3:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new int[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<int> test1(arr1, row1, col1);
+                                                    int scalar;
+                                                    unsigned int col_1, col_2;
+                                                    std::cout << "Enter scalar in int form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                    std::cin >> col_1 >> col_2;
+                                                    test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                default:
+                                                {
+                                                    std::cout << "Unknown programm" << std::endl;
+                                                }
+                                            }
+                                            if (Status2 != 0)
+                                            {
+                                                PrintColumnConversions();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    default:
+                                    {
+                                        std::cout << "Unknown programm" << std::endl;
+                                        break;
+                                    }
+                                }
+                                if (Status1 != 0)
+                                {
+                                    PrintMatrix(2);
+                                }
+                            }
+                            break;
+                        }
+                        case 3:
+                        {
+                            int Status1 = 0;
+                            int Flag4 = 1;
+                            PrintMatrix(3);
+                            while (Flag4 != 0) {
+                                std::cin >> Status1;
+                                unsigned int row1, col1;
+                                complex a;
+                                switch (Status1) {
+                                    case 0:
+                                    {
+                                        Flag4 = 0;
+                                        break;
+                                    }
+                                    case 1:
+                                    {
+                                        complex b;
+                                        unsigned int row2, col2;
+                                        std::cout << "Write the number of rows of the first matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the first matrix:\n";
+                                        std::cin >> col1;
+                                        std::cout << "Write the number of rows of the second matrix:\n";
+                                        std::cin >> row2;
+                                        std::cout << "Write the number of columns of the second matrix:\n";
+                                        std::cin >> col2;
+                                        if (row1 != row2 || col1 != col2)
+                                        {
+                                            std::cout << "Different sizes, error" << std::endl;
+                                            break;
+                                        }
+                                        auto arr1 = new complex[row1 * col1];
+                                        auto arr2 = new complex[row2 * col2];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the first matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        for (int i = 0; i < row2; i++) {
+                                            for (int j = 0; j < col2; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the second matrix:\n";
+                                                std::cin >> b;
+                                                arr2[i*col2 + j] = b;
+                                            }
+                                        }
+                                        Matrix<complex> test1(arr1, row1, col1);
+                                        Matrix<complex> test2(arr2, row2, col2);
+                                        Matrix<complex> *test3 = test1 + test2;
+                                        std::cout << "Result matrix:\n";
+                                        MatrixShow(test3);
+                                        break;
+                                    }
+                                    case 2:
+                                    {
+                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cin >> col1;
+                                        auto arr1 = new complex[row1 * col1];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        Matrix<complex> test1(arr1, row1, col1);
+                                        complex scalar;
+                                        std::cout << "Enter scalar in complex form:\n";
+                                        std::cin >> scalar;
+                                        Matrix<complex> *test3 = test1 * scalar;
+                                        std::cout << "Result matrix:\n";
+                                        MatrixShow(test3);
+                                        break;
+                                    }
+                                    case 3:
+                                    {
+                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cin >> row1;
+                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cin >> col1;
+                                        auto arr1 = new complex[row1 * col1];
+                                        for (int i = 0; i < row1; i++) {
+                                            for (int j = 0; j < col1; j++) {
+                                                std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                std::cin >> a;
+                                                arr1[i*col1 + j] = a;
+                                            }
+                                        }
+                                        Matrix<complex> test1(arr1, row1, col1);
+                                        double Norm;
+                                        Norm = test1.MatrixNorm();
+                                        std::cout << "Result norm: " << Norm << std::endl;
+                                        break;
+                                    }
+                                    case 4:
+                                    {
+                                        PrintStringConversions();
+                                        int Status2 = 0;
+                                        int Flag5 = 1;
+                                        while (Flag5 != 0) {
+                                            std::cin >> Status2;
+                                            switch (Status2) {
+                                                case 0:
+                                                {
+                                                    Flag5 = 0;
+                                                    break;
+                                                }
+                                                case 1:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    unsigned int row_1, row_2;
+                                                    std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                    std::cin >> row_1 >> row_2;
+                                                    test1.swapRows(row_1 - 1, row_2 - 1);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 2:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    complex scalar;
+                                                    unsigned int row_1;
+                                                    std::cout << "Enter scalar in complex form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter the row you want to multiply:\n";
+                                                    std::cin >> row_1;
+                                                    test1.multiplyRow(row_1 - 1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 3:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    complex scalar;
+                                                    unsigned int row_1, row_2;
+                                                    std::cout << "Enter scalar in complex form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                    std::cin >> row_1 >> row_2;
+                                                    test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                default:
+                                                {
+                                                    std::cout << "Unknown programm" << std::endl;
+                                                }
+                                            }
+                                            if (Status2 != 0)
+                                            {
+                                                PrintStringConversions();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    case 5:
+                                    {
+                                        PrintColumnConversions();
+                                        int Status2 = 0;
+                                        int Flag5 = 1;
+                                        while (Flag5 != 0) {
+                                            std::cin >> Status2;
+                                            switch (Status2) {
+                                                case 0:
+                                                {
+                                                    Flag5 = 0;
+                                                    break;
+                                                }
+                                                case 1:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    unsigned int col_1, col_2;
+                                                    std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                    std::cin >> col_1 >> col_2;
+                                                    test1.swapCols(col_1 - 1, col_2 - 1);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 2:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    complex scalar;
+                                                    unsigned int col_1;
+                                                    std::cout << "Enter scalar in complex form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter the col you want to multiply:\n";
+                                                    std::cin >> col_1;
+                                                    test1.multiplyCol(col_1 - 1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                case 3:
+                                                {
+                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cin >> row1;
+                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cin >> col1;
+                                                    auto arr1 = new complex[row1 * col1];
+                                                    for (int i = 0; i < row1; i++) {
+                                                        for (int j = 0; j < col1; j++) {
+                                                            std::cout << "Enter (" << i + 1 << ", " << j + 1 << ") element of the matrix:\n";
+                                                            std::cin >> a;
+                                                            arr1[i*col1 + j] = a;
+                                                        }
+                                                    }
+                                                    Matrix<complex> test1(arr1, row1, col1);
+                                                    complex scalar;
+                                                    unsigned int col_1, col_2;
+                                                    std::cout << "Enter scalar in complex form:\n";
+                                                    std::cin >> scalar;
+                                                    std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                    std::cin >> col_1 >> col_2;
+                                                    test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                    std::cout << "Result matrix:\n";
+                                                    MatrixShow(test1);
+                                                    break;
+                                                }
+                                                default:
+                                                {
+                                                    std::cout << "Unknown programm" << std::endl;
+                                                }
+                                            }
+                                            if (Status2 != 0)
+                                            {
+                                                PrintColumnConversions();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    default:
+                                    {
+                                        std::cout << "Unknown command" << std::endl;
+                                        break;
+                                    }
+                                }
+                                if (Status1 != 0)
+                                {
+                                    PrintMatrix(3);
+                                }
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            PrintMatrix(Status);
+                            break;
+                        }
+                    }
+                    if (Status != 0)
+                    {
+                        PrintCase(2);
                     }
                 }
+                break;
             }
             default:
             {

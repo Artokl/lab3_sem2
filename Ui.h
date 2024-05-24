@@ -26,10 +26,40 @@ void PrintFunctionsForVector() {
 void PrintMenuMatrix() {
     std::cout << "0) Return to StartMenu" << std::endl;
     std::cout << "1) Run tests" << std::endl;
+    std::cout << "2) Use functions with int matrixes" << std::endl;
+    std::cout << "3) Use functions with complex matrixes" << std::endl;
+}
+void PrintFunctionsForMatrix() {
+    std::cout << "0) Return back" << std::endl;
+    std::cout << "1) MatrixSum" << std::endl;
+    std::cout << "2) MatrixMultiOnScalar" << std::endl;
+    std::cout << "3) MatrixNorm" << std::endl;
+    std::cout << "4) Elementary string conversions" << std::endl;
+    std::cout << "5) elementary column conversions" << std::endl;
+}
+void PrintStringConversions() {
+    std::cout << "0) Return back" << std::endl;
+    std::cout << "1) SwapRows" << std::endl;
+    std::cout << "2) MultiplyRow" << std::endl;
+    std::cout << "3) AddRows" << std::endl;
+}
+void PrintColumnConversions() {
+    std::cout << "0) Return back" << std::endl;
+    std::cout << "1) SwapCols" << std::endl;
+    std::cout << "2) MultiplyCol" << std::endl;
+    std::cout << "3) AddCols" << std::endl;
 }
 void PrintMatrix(int Status) {
     if (Status == 1) {
         std::cout << "Tests for matrix passed" << std::endl;
+    }
+    else if (Status == 2) {
+        std::cout << "Int Matrices:" << std::endl;
+        PrintFunctionsForMatrix();
+    }
+    else if (Status == 3) {
+        std::cout << "Complex Matrices:" << std::endl;
+        PrintFunctionsForMatrix();
     }
     else {
         std::cout << "Unknown Programm" << std::endl;
@@ -41,9 +71,11 @@ void PrintVector(int Status)
         std::cout << "Tests for vector passed" << std::endl;
     }
     else if (Status == 2) {
+        std::cout << "Int vectors:" << std::endl;
         PrintFunctionsForVector();
     }
     else if (Status == 3) {
+        std::cout << "Complex vectors:" << std::endl;
         PrintFunctionsForVector();
     }
     else {

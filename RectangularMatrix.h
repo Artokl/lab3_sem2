@@ -1,90 +1,86 @@
 #ifndef RECTANGULARMATRIX_H
 #define RECTANGULARMATRIX_H
 
-#ifndef MATRIX_H
-#define MATRIX_H
-
-#include <cassert>
 #include "ArraySequence.h"
 #include "Abs.h"
 
-template <typename T, unsigned int Rows, unsigned int Cols>
+template <typename T>
 class Matrix {
 private:
-    MutableArraySequence<MutableArraySequence<T>> data;
-
+    MutableArraySequence<MutableArraySequence<T> *> data;
+    unsigned int Rows;
+    unsigned int Cols;
 public:
-    Matrix() {
+    Matrix(unsigned int rows, unsigned int cols) {
+        if (rows == 0 || cols == 0) {
+            throw std::invalid_argument("invalid size");
+        }
+        this->Cols = cols;
+        this->Rows = rows;
         for (int i = 0; i < Rows; ++i) {
-            MutableArraySequence<T> row(Cols);
+            MutableArraySequence<T> *row = new MutableArraySequence<T> (Cols);
             data.Append(row);
         }
     }
-
-    explicit Matrix(const T* array) {
+    explicit Matrix(const T* array, unsigned int rows, unsigned int cols) {
+        if (rows == 0 || cols == 0) {
+            throw std::invalid_argument("invalid size");
+        }
+        this->Cols = cols;
+        this->Rows = rows;
         for (unsigned int i = 0; i < Rows; ++i) {
-            MutableArraySequence<T> row;
-            for (unsigned int j = 0; j < Cols; ++j) {
-                row.Append(array[i * Cols + j]);
+            MutableArraySequence<T> *row = new MutableArraySequence<T>;
+            for (int j = 0; j < Cols; ++j) {
+                row->Append(array[i * Cols + j]);
+            }
+            data.Append(row);
+        }
+    }
+    Matrix(const Matrix<T> &matrix): Rows(matrix.Rows), Cols(matrix.Cols) {
+        for (int i = 0; i < Rows; ++i) {
+            MutableArraySequence<T> *row = new MutableArraySequence<T>;
+            for (int j = 0; j < Cols; ++j) {
+                row->Append(matrix(i, j));
             }
             data.Append(row);
         }
     }
 
-    T operator()(int row, int col) const {
-        assert(row < Rows && col < Cols);
-        return data.Get(row).Get(col);
-    }
-
-    T operator()(int row, int col) {
-        assert(row < Rows && col < Cols);
-        return data.Get(row).Get(col);
-    }
     T Get(int row, int col) {
-        assert(row < Rows && col < Cols);
-        return data.Get(row).Get(col);
+        if (row >= Rows && col >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
+        return data.Get(row)->Get(col);
     }
-    static int getRows() {
+    unsigned int getRows() const {
         return Rows;
     }
 
-    static int getCols() {
+    unsigned int getCols() const {
         return Cols;
     }
 
-    Matrix <T, Rows, Cols> MatrixSum(const Matrix<T, Rows, Cols> &matrix) {
+    Matrix <T> *MatrixSum(const Matrix<T> &matrix) {
         if (Rows != matrix.getRows() || Cols != matrix.getCols()) {
             throw std::invalid_argument("different sizes");
         }
-        Matrix<T, Rows, Cols> result;
+        Matrix<T> *result = new Matrix<T>(Rows, Cols);
         for (int i = 0; i < Rows; ++i) {
             for (int j = 0; j < Cols; ++j) {
-                result.data.Append((*this)(i, j) + matrix(i, j));
+                result->data.Get(i)->Swap((*this)(i, j) + matrix(i, j), j);
             }
         }
         return result;
     }
-
-    Matrix <T, Rows, Cols> MatrixMultiOnScalar(const T &scalar) {
-        Matrix<T, Rows, Cols> result;
+    Matrix <T> *MatrixMultiOnScalar(const T &scalar) {
+        Matrix<T> *result = new Matrix<T>(Rows, Cols);
         for (int i = 0; i < Rows; ++i) {
             for (int j = 0; j < Cols; ++j) {
-                result(i, j) = (*this)(i, j) * scalar;
+                result->data.Get(i)->Swap((*this)(i, j) * scalar, j);
             }
         }
         return result;
     }
-
-    Matrix<T, Rows, Cols> *operator+(const Matrix<T, Rows, Cols> &other) const {
-        Matrix <T, Rows, Cols> *Res = this->MatrixSum(other);
-        return Res;
-    }
-
-    Matrix<T, Rows, Cols> *operator*(const T &scalar) const {
-        Matrix<T, Rows, Cols> *Res = this->MatrixMultiOnScalar(scalar);
-        return Res;
-    }
-
     double MatrixNorm() const {
         double sum = 0;
         for (int i = 0; i < Rows; ++i) {
@@ -95,60 +91,110 @@ public:
         }
         return sqrt(sum);
     }
-
-    // Elementary row operations
     void swapRows(int row1, int row2) {
-        assert(row1 < Rows && row2 < Rows);
+        if (row1 >= Rows && row2 >= Rows) {
+            throw std::invalid_argument("wrong size");
+        }
         for (int j = 0; j < Cols; ++j) {
-            std::swap((*this)(row1, j), (*this)(row2, j));
+            T temp = (*this)(row1, j);
+            this->data.Get(row1)->Swap((*this)(row2, j), j);
+            this->data.Get(row2)->Swap(temp, j);
         }
     }
-
     void multiplyRow(int row, const T& scalar) {
-        assert(row < Rows);
+        if (row >= Rows) {
+            throw std::invalid_argument("wrong size");
+        }
         for (int j = 0; j < Cols; ++j) {
-            (*this)(row, j) *= scalar;
+            this->data.Get(row)->Swap((*this)(row, j) * scalar, j);
         }
     }
-
-    void addRows(int row1, int row2, const T& scalar = T(1)) {
-        assert(row1 < Rows && row2 < Rows);
+    void addRows(int row1, int row2, const T& scalar) {
+        if (row1 >= Rows && row2 >= Rows) {
+            throw std::invalid_argument("wrong size");
+        }
         for (int j = 0; j < Cols; ++j) {
-            (*this)(row1, j) += (*this)(row2, j) * scalar;
+            this->data.Get(row1)->Swap((*this)(row1, j) + (*this)(row2, j) * scalar, j);
         }
     }
-
-    // Elementary column operations
     void swapCols(int col1, int col2) {
-        assert(col1 < Cols && col2 < Cols);
+        if (col1 >= Cols && col2 >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
         for (int i = 0; i < Rows; ++i) {
-            std::swap((*this)(i, col1), (*this)(i, col2));
+            T temp = (*this)(i, col1);
+            this->data.Get(i)->Swap((*this)(i, col2), col1);
+            this->data.Get(i)->Swap(temp, col2);
         }
     }
-
     void multiplyCol(int col, const T& scalar) {
-        assert(col < Cols);
+        if (col >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
         for (int i = 0; i < Rows; ++i) {
-            (*this)(i, col) *= scalar;
+            this->data.Get(i)->Swap((*this)(i, col) * scalar, col);
+        }
+    }
+    void addCols(int col1, int col2, const T& scalar) {
+        if (col1 >= Cols && col2 >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
+        for (int i = 0; i < Rows; ++i) {
+            this->data.Get(i)->Swap((*this)(i, col1) + (*this)(i, col2) * scalar, col1);
         }
     }
 
-    void addCols(int col1, int col2, const T& scalar = T(1)) {
-        assert(col1 < Cols && col2 < Cols);
-        for (int i = 0; i < Rows; ++i) {
-            (*this)(i, col1) += (*this)(i, col2) * scalar;
+    ~Matrix() {
+        for (int i = 0; i < Rows; i++) {
+            delete data.Get(i);
         }
+        Rows = 0;
+        Cols = 0;
+    }
+
+    T operator()(int row, int col) const {
+        if (row >= Rows && col >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
+        return data.Get(row)->Get(col);
+    }
+
+    T operator()(int row, int col) {
+        if (row >= Rows && col >= Cols) {
+            throw std::invalid_argument("wrong size");
+        }
+        return data.Get(row)->Get(col);
+    }
+    Matrix<T> *operator+(const Matrix<T> &other) {
+        Matrix <T> *Res = this->MatrixSum(other);
+        return Res;
+    }
+
+    Matrix<T> *operator*(const T &scalar) {
+        Matrix<T> *Res = this->MatrixMultiOnScalar(scalar);
+        return Res;
+    }
+    Matrix operator=(Matrix<T> &matrix) {
+        Matrix <T> Res = new Matrix<T>(matrix);
+        return Res;
     }
 };
 
-template <typename T, unsigned int Rows, unsigned int Cols> void MatrixShow(Matrix<T, Rows, Cols> &matrix) {
-    for (int i = 0; i < Rows; ++i) {
-        for (int j = 0; j < Cols; ++j) {
+template <typename T> void MatrixShow(Matrix<T> &matrix) {
+    for (int i = 0; i < matrix.getRows(); ++i) {
+        for (int j = 0; j < matrix.getCols(); ++j) {
             std::cout << (matrix)(i, j) << " ";
         }
         std::cout << std::endl;
     }
 }
+template <typename T> void MatrixShow(Matrix<T> *matrix) {
+    for (int i = 0; i < matrix->getRows(); ++i) {
+        for (int j = 0; j < matrix->getCols(); ++j) {
+            std::cout << (*matrix)(i, j) << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
-#endif // MATRIX_H
 #endif //RECTANGULARMATRIX_H

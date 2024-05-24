@@ -89,6 +89,14 @@ public:
         }
         elements[index] = value;
     }
+    void Swap(const T &item, int index)
+    {
+        if (index < 0 || index > this->size)
+        {
+            throw std::out_of_range ("invalid argument");
+        }
+        elements[index] = item;
+    }
     void Resize (int newSize)
     {
         if (newSize < 0)
