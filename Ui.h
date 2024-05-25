@@ -9,6 +9,7 @@ void StartMenu()
     std::cout << "0) Exit" << std::endl;
     std::cout << "1) Vector" << std::endl;
     std::cout << "2) RectangularMatrix" << std::endl;
+    std::cout << "3) LinearShape" << std::endl;
 }
 void PrintMenuVector() {
     std::cout << "0) Return to StartMenu" << std::endl;
@@ -36,6 +37,35 @@ void PrintFunctionsForMatrix() {
     std::cout << "3) MatrixNorm" << std::endl;
     std::cout << "4) Elementary string conversions" << std::endl;
     std::cout << "5) elementary column conversions" << std::endl;
+}
+void PrintMenuLinearShape() {
+    std::cout << "0) Return to StartMenu" << std::endl;
+    std::cout << "1) Run tests" << std::endl;
+    std::cout << "2) Use functions with int linearshapes" << std::endl;
+    std::cout << "3) Use functions with complex linearshapes" << std::endl;
+}
+void PrintFunctionsForLinerShape() {
+    std::cout << "0) Return back" << std::endl;
+    std::cout << "1) LinearShapeSum" << std::endl;
+    std::cout << "2) LinearShapeDif" << std::endl;
+    std::cout << "3) LinearShapeMultiOnScalar" << std::endl;
+    std::cout << "4) LinearShapeCalculating" << std::endl;
+}
+void PrintLinearShape(int Status) {
+    if (Status == 1) {
+        std::cout << "Tests for linearshape passed" << std::endl;
+    }
+    else if (Status == 2) {
+        std::cout << "Int linearshapes:" << std::endl;
+        PrintFunctionsForLinerShape();
+    }
+    else if (Status == 3) {
+        std::cout << "Complex linearshapes:" << std::endl;
+        PrintFunctionsForLinerShape();
+    }
+    else {
+        std::cout << "Unknown Programm" << std::endl;
+    }
 }
 void PrintStringConversions() {
     std::cout << "0) Return back" << std::endl;
@@ -92,6 +122,9 @@ void PrintCase(int Status)
     }
     else if (Status == 2) {
         PrintMenuMatrix();
+    }
+    else if(Status == 3) {
+        PrintMenuLinearShape();
     }
     else {
         std::cout << "Unknown command" << std::endl;

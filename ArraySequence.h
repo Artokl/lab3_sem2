@@ -14,7 +14,7 @@ public:
     {
         this->array = new DynamicArray<T>();
     }
-    ArraySequence(int count)
+    explicit ArraySequence(int count)
     {
         this->array = new DynamicArray<T>(count);
     }
@@ -26,11 +26,11 @@ public:
     {
         this->array = new DynamicArray<T>(*seq.array);
     }
-    ArraySequence(const DynamicArray<T> *array)
+    explicit ArraySequence(const DynamicArray<T> *array)
     {
         this->array = new DynamicArray<T>(*array);;
     }
-    ArraySequence(const DynamicArray<T> &array)
+    explicit ArraySequence(const DynamicArray<T> &array)
     {
         this->array = new DynamicArray<T>(array);
     }

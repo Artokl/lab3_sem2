@@ -1,9 +1,11 @@
 #include <iostream>
 
+#include "LinearShape.h"
 #include "RectangularMatrix.h"
 #include "Ui.h"
 #include "Tests/StandartTests.h"
 #include "Tests/ComplexTests.h"
+#include "Tests/LinearShapeTests.h"
 #include "Tests/VectorTests.h"
 #include "Tests/MatrixTests.h"
 
@@ -975,6 +977,138 @@ int main()
                     if (Status != 0)
                     {
                         PrintCase(2);
+                    }
+                }
+                break;
+            }
+            case 3:
+            {
+                int Status = 0;
+                int Flag3 = 1;
+                PrintCase(3);
+                while (Flag3 != 0) {
+                    std::cin >> Status;
+                    switch (Status) {
+                        case 0:
+                        {
+                            Flag3 = 0;
+                            break;
+                        }
+                        case 1:
+                        {
+                            LinearShapeTests();
+                            PrintLinearShape(1);
+                            break;
+                        }
+                        case 2:
+                        {
+                            int Status5 = 0;
+                            int Flag5 = 1;
+                            PrintLinearShape(2);
+                            while (Flag5 != 0) {
+                                std::cin >> Status5;
+                                int a, b, length1, length2;
+                                switch (Status5) {
+                                    case 0:
+                                    {
+                                        Flag5 = 0;
+                                        break;
+                                    }
+                                    case 1:
+                                    {
+                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cin >> length1;
+                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cin >> length2;
+                                        int arr1[length1], arr2[length2];
+                                        if (length1 != length2) {
+                                            throw std::invalid_argument("different sizes");
+                                        }
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        for (int i = 0; i < length2; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        LinearShape<int> linear_shape2(arr2,length2);
+                                        LinearShape<int> *Res = linear_shape1 + linear_shape2;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    case 2:
+                                    {
+                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cin >> length1;
+                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cin >> length2;
+                                        int arr1[length1], arr2[length2];
+                                        if (length1 != length2) {
+                                            throw std::invalid_argument("different sizes");
+                                        }
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        for (int i = 0; i < length2; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        LinearShape<int> linear_shape2(arr2,length2);
+                                        LinearShape<int> *Res = linear_shape1 - linear_shape2;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    case 3:
+                                    {
+                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cin >> length1;
+                                        int arr1[length1];
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        int scalar;
+                                        std::cout << "Enter the scalar in int form:\n";
+                                        std::cin >> scalar;
+                                        LinearShape<int> *Res = linear_shape1 * scalar;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    default:
+                                    {
+                                        PrintLinearShape(Status5);
+                                        break;
+                                    }
+                                }
+                                if (Status5 != 0)
+                                {
+                                    PrintLinearShape(2);
+                                }
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            PrintLinearShape(Status);
+                            break;
+                        }
+                    }
+                    if (Status != 0)
+                    {
+                        PrintCase(3);
                     }
                 }
                 break;

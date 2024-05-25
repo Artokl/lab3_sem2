@@ -109,7 +109,9 @@
 				11,
 				12,
 				13,
-				14
+				14,
+				15,
+				16
 			]
 		}
 	],
@@ -189,6 +191,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "Tests/MatrixTests.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "LinearShape.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Tests/LinearShapeTests.h",
 			"sourceGroupIndex" : 1
 		}
 	],
