@@ -1074,7 +1074,7 @@ int main()
                                         std::cin >> length1;
                                         int arr1[length1];
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
@@ -1087,6 +1087,26 @@ int main()
                                         LinearShapeShow(Res);
                                         break;
                                     }
+                                    case 4:
+                                    {
+                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cin >> length1;
+                                        int arr1[length1];
+                                        int arr2[length1];
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                            std::cout << "Enter the x" << i+1 << " element of the LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        int Result;
+                                        Result = linear_shape1.linear_shapeCalculating(arr2,length1);
+                                        std::cout << "Result Calculating: " << Result << std::endl;
+                                        break;
+                                    }
                                     default:
                                     {
                                         PrintLinearShape(Status5);
@@ -1096,6 +1116,127 @@ int main()
                                 if (Status5 != 0)
                                 {
                                     PrintLinearShape(2);
+                                }
+                            }
+                            break;
+                        }
+                        case 3:
+                        {
+                            int Status5 = 0;
+                            int Flag5 = 1;
+                            PrintLinearShape(3);
+                            while (Flag5 != 0) {
+                                std::cin >> Status5;
+                                complex a, b;
+                                int length1, length2;
+                                switch (Status5) {
+                                    case 0:
+                                    {
+                                        Flag5 = 0;
+                                        break;
+                                    }
+                                    case 1:
+                                    {
+                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cin >> length1;
+                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cin >> length2;
+                                        complex arr1[length1], arr2[length2];
+                                        if (length1 != length2) {
+                                            throw std::invalid_argument("different sizes");
+                                        }
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        for (int i = 0; i < length2; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        LinearShape<complex> linear_shape2(arr2,length2);
+                                        LinearShape<complex> *Res = linear_shape1 + linear_shape2;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    case 2:
+                                    {
+                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cin >> length1;
+                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cin >> length2;
+                                        complex arr1[length1], arr2[length2];
+                                        if (length1 != length2) {
+                                            throw std::invalid_argument("different sizes");
+                                        }
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        for (int i = 0; i < length2; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        LinearShape<complex> linear_shape2(arr2,length2);
+                                        LinearShape<complex> *Res = linear_shape1 - linear_shape2;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    case 3:
+                                    {
+                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cin >> length1;
+                                        complex arr1[length1];
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                        }
+                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        complex scalar;
+                                        std::cout << "Enter the scalar in complex form:\n";
+                                        std::cin >> scalar;
+                                        LinearShape<complex> *Res = linear_shape1 * scalar;
+                                        std::cout << "Result LinearShape:\n";
+                                        LinearShapeShow(Res);
+                                        break;
+                                    }
+                                    case 4:
+                                    {
+                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cin >> length1;
+                                        complex arr1[length1];
+                                        complex arr2[length1];
+                                        for (int i = 0; i < length1; i++) {
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cin >> a;
+                                            arr1[i] = a;
+                                            std::cout << "Enter the x" << i+1 << " element of the LinearShape:\n";
+                                            std::cin >> b;
+                                            arr2[i] = b;
+                                        }
+                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        complex Result;
+                                        Result = linear_shape1.linear_shapeCalculating(arr2,length1);
+                                        std::cout << "Result Calculating: " << Result << std::endl;
+                                        break;
+                                    }
+                                    default:
+                                    {
+                                        PrintLinearShape(Status5);
+                                        break;
+                                    }
+                                }
+                                if (Status5 != 0)
+                                {
+                                    PrintLinearShape(3);
                                 }
                             }
                             break;

@@ -108,6 +108,7 @@ public:
 };
 
 void LinearShapeShow(const LinearShape<int> &linear_shape) {
+    int flag = 0;
     std::cout << "L(";
     for (int i = 0; i < linear_shape.GetLength()-1; i++) {
         std::cout << "x" << i+1 << ",";
@@ -115,42 +116,78 @@ void LinearShapeShow(const LinearShape<int> &linear_shape) {
     std::cout << "x" << linear_shape.GetLength() << ") =";
     if (linear_shape.Get(0) > 0 || linear_shape.Get(0) < 0) {
         std::cout << " " << linear_shape.Get(0) << "x1";
+        flag = 1;
     }
     for (int i = 1; i < linear_shape.GetLength()-1; i++) {
-        if (linear_shape.Get(i) > 0) std::cout << " + " << linear_shape.Get(i) << "x" << i+1;
-        if (linear_shape.Get(i) < 0) std::cout << " - " << Abs(linear_shape.Get(i)) << "x" << i+1;
+        if (linear_shape.Get(i) > 0) std::cout << " + " << linear_shape.Get(i) << "x" << i+1; flag = 1;
+        if (linear_shape.Get(i) < 0) std::cout << " - " << Abs(linear_shape.Get(i)) << "x" << i+1; flag = 1;
     }
     if (linear_shape.Get(linear_shape.GetLength()-1) > 0) {
+        flag = 1;
         std::cout << " + " << linear_shape.Get(linear_shape.GetLength()-1)
-        << "x" << linear_shape.GetLength() << std::endl;
+        << "x" << linear_shape.GetLength();
     }
     else if (linear_shape.Get(linear_shape.GetLength()-1) < 0) {
+        flag = 1;
         std::cout << " - " << Abs(linear_shape.Get(linear_shape.GetLength()-1))
-        << "x" << linear_shape.GetLength() << std::endl;
+        << "x" << linear_shape.GetLength();
     }
+    if (flag == 0) {
+        std::cout << " 0";
+    }
+    std::cout << std::endl;
 }
 void LinearShapeShow(const LinearShape<int> *linear_shape) {
+    int flag = 0;
     std::cout << "L(";
     for (int i = 0; i < linear_shape->GetLength()-1; i++) {
         std::cout << "x" << i+1 << ",";
     }
-    std::cout << "x" << linear_shape->GetLength() << ") = ";
+    std::cout << "x" << linear_shape->GetLength() << ") =";
     if (linear_shape->Get(0) > 0 || linear_shape->Get(0) < 0) {
-        std::cout << linear_shape->Get(0) << "x1";
+        flag = 1;
+        std::cout << " " << linear_shape->Get(0) << "x1";
     }
     for (int i = 1; i < linear_shape->GetLength()-1; i++) {
-        if (linear_shape->Get(i) > 0) std::cout << " + " << linear_shape->Get(i) << "x" << i+1;
-        if (linear_shape->Get(i) < 0) std::cout << " - " << Abs(linear_shape->Get(i)) << "x" << i+1;
+        if (linear_shape->Get(i) > 0) std::cout << " + " << linear_shape->Get(i) << "x" << i+1; flag = 1;
+        if (linear_shape->Get(i) < 0) std::cout << " - " << Abs(linear_shape->Get(i)) << "x" << i+1; flag = 1;
     }
     if (linear_shape->Get(linear_shape->GetLength()-1) > 0) {
+        flag = 1;
         std::cout << " + " << linear_shape->Get(linear_shape->GetLength()-1)
-        << "x" << linear_shape->GetLength() << std::endl;
+        << "x" << linear_shape->GetLength();
     }
     else if (linear_shape->Get(linear_shape->GetLength()-1) < 0) {
+        flag = 1;
         std::cout << " - " << Abs(linear_shape->Get(linear_shape->GetLength()-1))
-        << "x" << linear_shape->GetLength() << std::endl;
+        << "x" << linear_shape->GetLength();
     }
+    if (flag == 0) {
+        std::cout << " 0";
+    }
+    std::cout << std::endl;
 }
-
+void LinearShapeShow(const LinearShape<complex> &linear_shape) {
+    std::cout << "L(";
+    for (int i = 0; i < linear_shape.GetLength(); i++) {
+        std::cout << "x" << i+1 << ",";
+    }
+    std::cout << "x" << linear_shape.GetLength() << ") = ";
+    for (int i = 0; i < linear_shape.GetLength()-1; i++) {
+        std::cout << "(" << linear_shape.Get(i) << ")x" << i+1;
+    }
+    std::cout << "(" << linear_shape.Get(linear_shape.GetLength()-1) << ")x" << linear_shape.GetLength()-1 << std::endl;
+}
+void LinearShapeShow(const LinearShape<complex> *linear_shape) {
+    std::cout << "L(";
+    for (int i = 0; i < linear_shape->GetLength()-1; i++) {
+        std::cout << "x" << i+1 << ",";
+    }
+    std::cout << "x" << linear_shape->GetLength() << ") =";
+    for (int i = 0; i < linear_shape->GetLength()-1; i++) {
+        std::cout << "(" << linear_shape->Get(i) << ")x" << i+1 << " + ";
+    }
+    std::cout << "(" << linear_shape->Get(linear_shape->GetLength()-1) << ")x" << linear_shape->GetLength()-1 << std::endl;
+}
 
 #endif //LINEARSHAPE_H
