@@ -11,7 +11,7 @@ void TestMatrixSum() {
     int c[] = {7, 7, 7, 7, 7, 7};
     Matrix<int> test1(a, 2, 3);
     Matrix<int> test2(b, 2,3);
-    Matrix<int> *test3 = test1.MatrixSum(test2);
+    Matrix<int> *test3 = test1.Sum(test2);
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 3; ++j) {
             assert((*test3)(i, j) == c[i * 3 + j]);
@@ -36,7 +36,7 @@ void TestMatrixSumComplex() {
     complex arrRes[] = {a1, b1, c1, d1};
     Matrix<complex> test1(arr1, 2, 2);
     Matrix<complex> test2(arr2, 2, 2);
-    Matrix<complex> *test3 = test1.MatrixSum(test2);
+    Matrix<complex> *test3 = test1.Sum(test2);
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             assert((*test3)(i, j).GetRe() == arrRes[i * 2 + j].GetRe());
@@ -48,7 +48,7 @@ void TestMatrixMultiOnScalar() {
     int a[] = {1, 2, 3, 4, 5, 6};
     int c[] = {2, 4, 6, 8, 10, 12};
     Matrix<int> test1(a,2,3);
-    Matrix<int> *test2 = test1.MatrixMultiOnScalar(2);
+    Matrix<int> *test2 = test1.ScalarMultiplication(2);
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 3; ++j) {
             assert((*test2)(i, j) == c[i * 3 + j]);
@@ -67,7 +67,7 @@ void TestMatrixMultiOnScalarComplex() {
     complex arr1[] = {a, b, c, d};
     complex arr2[] = {e, f, g, h};
     Matrix<complex> test1(arr1, 2, 2);
-    Matrix<complex> *test2 = test1.MatrixMultiOnScalar(complex (2, 0));
+    Matrix<complex> *test2 = test1.ScalarMultiplication(complex (2, 0));
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             assert((*test2)(i, j).GetRe() == arr2[i * 2 + j].GetRe());
@@ -79,7 +79,7 @@ void TestMatrixNorm () {
     int a[] = {1, 2, 3, 4, 5, 6};
     Matrix<int> test(a, 2, 3);
     double Res1 = sqrt(1*1 + 2*2 + 3*3 + 4*4 + 5*5 + 6*6);
-    double Res = test.MatrixNorm();
+    double Res = test.GetNorm();
     assert(Res - Res1 < 0.0001);
 }
 void TestMatrixNormComplex() {
@@ -90,7 +90,7 @@ void TestMatrixNormComplex() {
     complex arr1[] = {a, b, c, d};
     double Res = sqrt(sqrt(1*1+2*2)*sqrt(2*2+1*1) + sqrt(3*3+4*4) + sqrt(5*5+6*6) + sqrt(7*7+8*8));
     Matrix<complex> test1(arr1, 2, 2);
-    double Res1 = test1.MatrixNorm();
+    double Res1 = test1.GetNorm();
     assert(Res - Res1 < 0.0001);
 }
 void TestMatrixSwapRows() {

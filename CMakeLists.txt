@@ -18,5 +18,8 @@ add_executable(lab_3 main.cpp
         Abs.h
         RectangularMatrix.h
         Tests/MatrixTests.h
-        LinearShape.h
-        Tests/LinearShapeTests.h)
+        LinearForm.h
+        Tests/LinearFormTests.h
+        LinearForm.h
+        ClassConclusions.h
+)

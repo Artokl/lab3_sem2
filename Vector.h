@@ -27,6 +27,11 @@ template <typename T> class Vector
             this->elements->Set(vec.Get(i), i);
         }
     }
+    ~Vector()
+    {
+        delete elements;
+    }
+
     T Get(int index) const
     {
         return this->elements->Get(index);
@@ -35,7 +40,8 @@ template <typename T> class Vector
     {
         return this->elements->GetSize();
     }
-    Vector<T> *vectorSum(const Vector<T> &vec2)
+
+    Vector<T> Sum(const Vector<T> &vec2)
     {
         if (this->GetLength() != vec2.GetLength())
         {
@@ -46,10 +52,10 @@ template <typename T> class Vector
         {
             Present[i] = this->Get(i) + vec2.Get(i);
         }
-        Vector<T> *VecRes = new Vector(Present, this->GetLength());
+        Vector<T> VecRes = Vector(Present, this->GetLength());
         return VecRes;
     }
-    Vector<T> *vectorMultiOnScalar(T scalar)
+    Vector<T> ScalarMultiplication(T scalar)
     {
         T *Present = new T[this->GetLength()];
 
@@ -57,10 +63,10 @@ template <typename T> class Vector
         {
             Present[i] = this->Get(i) * scalar;
         }
-        Vector<T> *vecRes = new Vector(Present, this->GetLength());
+        Vector<T> vecRes = Vector(Present, this->GetLength());
         return vecRes;
     }
-    double vectorNorm()
+    double GetNorm()
     {
         double Present = 0;
         for (int i = 0; i < this->GetLength(); i++)
@@ -71,7 +77,7 @@ template <typename T> class Vector
         double VecNorm = sqrt(Present);
         return VecNorm;
     }
-    Vector<T> *vectorMulti(const Vector<T> &vec2) {
+    Vector<T> Multiplication(const Vector<T> &vec2) {
         if (this->GetLength() != vec2.GetLength())
         {
             throw std::invalid_argument("different sizes");
@@ -81,26 +87,23 @@ template <typename T> class Vector
         {
             Present[i] = this->Get(i) * vec2.Get(i);
         }
-        Vector<T> *vecRes = new Vector(Present, this->GetLength());
+        Vector<T> vecRes = Vector(Present, this->GetLength());
         return vecRes;
     }
-    virtual ~Vector()
+
+    Vector<T> operator+(const Vector<T> &vec)
     {
-        delete elements;
-    }
-    Vector<T> *operator+(const Vector<T> &vec)
-    {
-        Vector<T> *vecRes = this->vectorSum(vec);
+        Vector<T> vecRes = this->Sum(vec);
         return vecRes;
     }
-    Vector<T> *operator*(const Vector<T> &vec)
+    Vector<T> operator*(const Vector<T> &vec)
     {
-        Vector<T> *vecRes = this->vectorMulti(vec);
+        Vector<T> vecRes = this->Multiplication(vec);
         return vecRes;
     }
-    Vector<T> *operator*(const T item)
+    Vector<T> operator*(const T item)
     {
-        Vector<T> *vecRes = this->vectorMultiOnScalar(item);
+        Vector<T> vecRes = this->ScalarMultiplication(item);
         return vecRes;
     }
     T operator[](int index)
@@ -113,23 +116,6 @@ template <typename T> class Vector
         return newVec;
     }
 };
-template <typename T> void VectorShow(Vector<T> &vec)
-{
-    std::cout << "{";
-    for (int i = 0; i < vec.GetLength() - 1; i++)
-    {
-        std::cout << vec.Get(i) << ", ";
-    }
-    std::cout << vec.Get(vec.GetLength() - 1) << "}";
-}
-template <typename T> void VectorShow(Vector<T> *vec)
-{
-    std::cout << "{";
-    for (int i = 0; i < vec->GetLength() - 1; i++)
-    {
-        std::cout << vec->Get(i) << ", ";
-    }
-    std::cout << vec->Get(vec->GetLength() - 1) << "}";
-}
+
 
 #endif //VECTOR_H

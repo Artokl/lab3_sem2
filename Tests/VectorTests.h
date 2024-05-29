@@ -12,10 +12,10 @@ void TestVectorSum()
     int c[] = {6, 6, 6, 6, 6};
     Vector<int> test1(a, 5);
     Vector<int> test2(b, 5);
-    Vector<int> *res = test1.vectorSum(test2);
-    for (int i = 0; i < res->GetLength(); i++)
+    Vector<int> res = test1.Sum(test2);
+    for (int i = 0; i < res.GetLength(); i++)
     {
-        assert(res->Get(i) == c[i]);
+        assert(res.Get(i) == c[i]);
     }
 }
 
@@ -32,12 +32,12 @@ void TestVectorSumComplex()
     complex arrRes[] = {e, f};
     Vector<complex> test1(arr1, 2);
     Vector<complex> test2(arr2, 2);
-    Vector<complex> *res = test1.vectorSum(test2);
-    assert(res->GetLength() == 2);
-    for (int i = 0; i < res->GetLength(); i++)
+    Vector<complex> res = test1.Sum(test2);
+    assert(res.GetLength() == 2);
+    for (int i = 0; i < res.GetLength(); i++)
     {
-        assert(res->Get(i).GetRe() == arrRes[i].GetRe());
-        assert(res->Get(i).GetIm() == arrRes[i].GetIm());
+        assert(res.Get(i).GetRe() == arrRes[i].GetRe());
+        assert(res.Get(i).GetIm() == arrRes[i].GetIm());
     }
 }
 
@@ -46,11 +46,11 @@ void TestVectorMultiOnScalar()
     int a[] = {1, 2, 3, 4, 5};
     int b[] = {2, 4, 6, 8, 10};
     Vector<int> vec(a, 5);
-    Vector<int> *res = vec.vectorMultiOnScalar(2);
+    Vector<int> res = vec.ScalarMultiplication(2);
     assert(vec.GetLength() == 5);
-    for (int i = 0; i < res->GetLength(); i++)
+    for (int i = 0; i < res.GetLength(); i++)
     {
-        assert(res->Get(i) == b[i]);
+        assert(res.Get(i) == b[i]);
     }
 }
 
@@ -63,12 +63,12 @@ void TestVectorMultiOnScalarComplex()
     complex arr[] = {a, b};
     complex res[] = {c, d};
     Vector<complex> test (arr,2);
-    Vector<complex> *test1 = test.vectorMultiOnScalar(complex(2,0));
-    assert(test1->GetLength() == 2);
-    for (int i = 0; i < test1->GetLength(); i++)
+    Vector<complex> test1 = test.ScalarMultiplication(complex(2,0));
+    assert(test1.GetLength() == 2);
+    for (int i = 0; i < test1.GetLength(); i++)
     {
-        assert(test1->Get(i).GetRe() == res[i].GetRe());
-        assert(test1->Get(i).GetIm() == res[i].GetIm());
+        assert(test1.Get(i).GetRe() == res[i].GetRe());
+        assert(test1.Get(i).GetIm() == res[i].GetIm());
     }
 }
 
@@ -77,7 +77,7 @@ void TestVectorNorm()
     int a[] = {1, 2, 3, 4, 5};
     Vector<int> vec(a, 5);
     double Res1 = sqrt(1*1 + 2*2 + 3*3 + 4*4 + 5*5);
-    double Res = vec.vectorNorm();
+    double Res = vec.GetNorm();
     assert(Res == Res1);
 }
 
@@ -88,7 +88,7 @@ void TestVectorNormComplex()
     complex arr[] = {a, b};
     double Res1 = sqrt(sqrt(1*1+3*3)*sqrt(1*1+3*3) + sqrt(2*2+4*4)*sqrt(2*2+4*4));
     Vector<complex> test(arr, 2);
-    double Res = test.vectorNorm();
+    double Res = test.GetNorm();
     assert(Res - Res1 < 0.00001);
 }
 
@@ -99,11 +99,11 @@ void TestVectorMulti()
     int c[] = {6, 14, 24, 36, 50};
     Vector<int> vec1(a, 5);
     Vector<int> vec2(b, 5);
-    Vector<int> *res = vec1.vectorMulti(vec2);
-    assert(res->GetLength() == 5);
-    for (int i = 0; i < res->GetLength(); i++)
+    Vector<int> res = vec1.Multiplication(vec2);
+    assert(res.GetLength() == 5);
+    for (int i = 0; i < res.GetLength(); i++)
     {
-        assert(res->Get(i) == c[i]);
+        assert(res.Get(i) == c[i]);
     }
 }
 
@@ -120,11 +120,11 @@ void TestVectorMultiComplex()
     complex arrRes[] = {e, f};
     Vector<complex> test1(arr1, 2);
     Vector<complex> test2(arr2, 2);
-    Vector<complex> *res = test1.vectorMulti(test2);
-    for (int i = 0; i < res->GetLength(); i++)
+    Vector<complex> res = test1.Multiplication(test2);
+    for (int i = 0; i < res.GetLength(); i++)
     {
-        assert(res->Get(i).GetRe() == arrRes[i].GetRe());
-        assert(res->Get(i).GetIm() == arrRes[i].GetIm());
+        assert(res.Get(i).GetRe() == arrRes[i].GetRe());
+        assert(res.Get(i).GetIm() == arrRes[i].GetIm());
     }
 }
 void VectorTests()

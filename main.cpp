@@ -1,24 +1,31 @@
 #include <iostream>
+#include <limits>
 
-#include "LinearShape.h"
-#include "RectangularMatrix.h"
 #include "Ui.h"
 #include "Tests/StandartTests.h"
 #include "Tests/ComplexTests.h"
-#include "Tests/LinearShapeTests.h"
+#include "Tests/LinearFormTests.h"
 #include "Tests/VectorTests.h"
 #include "Tests/MatrixTests.h"
+#include "ClassConclusions.h"
 
 int main()
 {
     StandartTests();
     ComplexTests();
     int Choise = 0;
+    std::string Choise1;
     int Flag = 1;
     StartMenu();
     while (Flag)
     {
-        std::cin >> Choise;
+        std::cin >> Choise1;
+        if (Choise1.length() == 1 && std::isdigit(Choise1[0])) {
+            Choise = Choise1[0] - '0';
+        }
+        else {
+            Choise = 5;
+        }
         switch (Choise)
         {
             case 0:
@@ -30,11 +37,18 @@ int main()
             case 1:
             {
                 int Status = 0;
+                std::string Stat;
                 int Flag1 = 1;
                 PrintCase(1);
                 while (Flag1 != 0)
                 {
-                    std::cin >> Status;
+                    std::cin >> Stat;
+                    if (Stat.length() == 1 && std::isdigit(Stat[0])) {
+                        Status = Stat[0] - '0';
+                    }
+                    else {
+                        Status = 5;
+                    }
                     switch (Status)
                     {
                         case 0:
@@ -51,11 +65,18 @@ int main()
                         case 2:
                         {
                             int Status1 = 0;
+                            std::string Stat1;
                             int Flag2 = 1;
                             PrintVector(2);
                             while (Flag2 != 0)
                             {
-                                std::cin >> Status1;
+                                std::cin >> Stat1;
+                                if (Stat1.length() == 1 && std::isdigit(Stat1[0])) {
+                                    Status1 = Stat1[0] - '0';
+                                }
+                                else {
+                                    Status1 = 5;
+                                }
                                 int len1, len2;
                                 int a, b;
                                 int len;
@@ -93,7 +114,7 @@ int main()
                                         }
                                         Vector<int> test1(arr1, len1);
                                         Vector<int> test2(arr2, len2);
-                                        Vector<int> *test3 = test1 + test2;
+                                        Vector<int> test3 = test1 + test2;
                                         std::cout << "Result vector: ";
                                         VectorShow(test3);
                                         std::cout << std::endl;
@@ -114,7 +135,7 @@ int main()
                                         int scalar;
                                         std::cout << "Enter scalar in int form:\n";
                                         std::cin >> scalar;
-                                        Vector<int> *test2 = test1 * scalar;
+                                        Vector<int> test2 = test1 * scalar;
                                         std::cout << "Vector Result: ";
                                         VectorShow(test2);
                                         std::cout << std::endl;
@@ -132,7 +153,7 @@ int main()
                                             arr[i] = a;
                                         }
                                         Vector<int> test1(arr, len);
-                                        double Norm = test1.vectorNorm();
+                                        double Norm = test1.GetNorm();
                                         std::cout << "VectorNorm Result: " << Norm << std::endl;
                                         break;
                                     }
@@ -163,7 +184,7 @@ int main()
                                         }
                                         Vector<int> test1(arr1, len1);
                                         Vector<int> test2(arr2, len2);
-                                        Vector<int> *test3 = test1 * test2;
+                                        Vector<int> test3 = test1 * test2;
                                         std::cout << "Vector Result: ";
                                         VectorShow(test3);
                                         std::cout << std::endl;
@@ -171,7 +192,7 @@ int main()
                                     }
                                     default:
                                     {
-                                        std::cout << "Unknown programm" << std::endl;
+                                        std::cout << "Unknown Command" << std::endl;
                                         break;
                                     }
                                 }
@@ -184,11 +205,18 @@ int main()
                         case 3:
                         {
                             int Status2 = 0;
+                            std::string Stat2;
                             int Flag3 = 1;
                             PrintVector(3);
                             while (Flag3 != 0)
                             {
-                                std::cin >> Status2;
+                                std::cin >> Stat2;
+                                if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
+                                    Status2 = Stat2[0] - '0';
+                                }
+                                else {
+                                    Status2 = 5;
+                                }
                                 int len1, len2;
                                 int len;
                                 complex a, b;
@@ -226,7 +254,7 @@ int main()
                                         }
                                         Vector<complex> test1(arr1, len1);
                                         Vector<complex> test2(arr2, len2);
-                                        Vector<complex> *test3 = test1 + test2;
+                                        Vector<complex> test3 = test1 + test2;
                                         std::cout << "Vector Result:";
                                         VectorShow(test3);
                                         std::cout << std::endl;
@@ -247,7 +275,7 @@ int main()
                                         complex scalar;
                                         std::cout << "Enter scalar in complex form:\n";
                                         std::cin >> scalar;
-                                        Vector<complex> *test2 = test1 * scalar;
+                                        Vector<complex> test2 = test1 * scalar;
                                         std::cout << "Vector Result: ";
                                         VectorShow(test2);
                                         std::cout << std::endl;
@@ -265,7 +293,7 @@ int main()
                                             arr[i] = a;
                                         }
                                         Vector<complex> test1(arr, len);
-                                        double Norm = test1.vectorNorm();
+                                        double Norm = test1.GetNorm();
                                         std::cout << "VectorNorm Result: " << Norm << std::endl;
                                         break;
                                     }
@@ -296,7 +324,7 @@ int main()
                                         }
                                         Vector<complex> test1(arr1, len1);
                                         Vector<complex> test2(arr2, len2);
-                                        Vector<complex> *test3 = test1 * test2;
+                                        Vector<complex> test3 = test1 * test2;
                                         std::cout << "Vector Result:";
                                         VectorShow(test3);
                                         std::cout << std::endl;
@@ -304,7 +332,7 @@ int main()
                                     }
                                     default:
                                     {
-                                        std::cout << "Unknown programm" << std::endl;
+                                        std::cout << "Unknown Command" << std::endl;
                                         break;
                                     }
                                 }
@@ -329,11 +357,18 @@ int main()
             case 2:
             {
                 int Status = 0;
+                std::string Stat3;
                 int Flag3 = 1;
                 PrintCase(2);
                 while (Flag3 != 0)
                 {
-                    std::cin >> Status;
+                    std::cin >> Stat3;
+                    if (Stat3.length() == 1 && std::isdigit(Stat3[0])) {
+                        Status = Stat3[0] - '0';
+                    }
+                    else {
+                        Status = 5;
+                    }
                     switch (Status) {
                         case 0:
                         {
@@ -349,10 +384,17 @@ int main()
                         case 2:
                         {
                             int Status1 = 0;
+                            std::string Stat4;
                             int Flag4 = 1;
                             PrintMatrix(2);
                             while (Flag4 != 0) {
-                                std::cin >> Status1;
+                                std::cin >> Stat4;
+                                if (Stat4.length() == 1 && std::isdigit(Stat4[0])) {
+                                    Status1 = Stat4[0] - '0';
+                                }
+                                else {
+                                    Status1 = 6;
+                                }
                                 unsigned int row1, col1;
                                 int a;
                                 switch (Status1) {
@@ -440,7 +482,7 @@ int main()
                                         }
                                         Matrix<int> test1(arr1, row1, col1);
                                         double Norm;
-                                        Norm = test1.MatrixNorm();
+                                        Norm = test1.GetNorm();
                                         std::cout << "Result matrix: " << Norm << std::endl;
                                         break;
                                     }
@@ -448,9 +490,16 @@ int main()
                                     {
                                         PrintStringConversions();
                                         int Status2 = 0;
+                                        std::string Stat6;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Status2;
+                                            std::cin >> Stat6;
+                                            if (Stat6.length() == 1 && std::isdigit(Stat6[0])) {
+                                                Status2 = Stat6[0] - '0';
+                                            }
+                                            else {
+                                                Status2 = 5;
+                                            }
                                             switch (Status2) {
                                                 case 0:
                                                 {
@@ -534,7 +583,7 @@ int main()
                                                 }
                                                 default:
                                                 {
-                                                    std::cout << "Unknown programm" << std::endl;
+                                                    std::cout << "Unknown Command" << std::endl;
                                                 }
                                             }
                                             if (Status2 != 0)
@@ -548,9 +597,16 @@ int main()
                                     {
                                         PrintColumnConversions();
                                         int Status2 = 0;
+                                        std::string Stat2;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Status2;
+                                            std::cin >> Stat2;
+                                            if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
+                                                Status2 = Stat2[0] - '0';
+                                            }
+                                            else {
+                                                Status2 = 5;
+                                            }
                                             switch (Status2) {
                                                 case 0:
                                                 {
@@ -634,7 +690,7 @@ int main()
                                                 }
                                                 default:
                                                 {
-                                                    std::cout << "Unknown programm" << std::endl;
+                                                    std::cout << "Unknown Command" << std::endl;
                                                 }
                                             }
                                             if (Status2 != 0)
@@ -646,7 +702,7 @@ int main()
                                     }
                                     default:
                                     {
-                                        std::cout << "Unknown programm" << std::endl;
+                                        std::cout << "Unknown Command" << std::endl;
                                         break;
                                     }
                                 }
@@ -660,10 +716,17 @@ int main()
                         case 3:
                         {
                             int Status1 = 0;
+                            std::string Stat1;
                             int Flag4 = 1;
                             PrintMatrix(3);
                             while (Flag4 != 0) {
-                                std::cin >> Status1;
+                                std::cin >> Stat1;
+                                if (Stat1.length() == 1 && std::isdigit(Stat1[0])) {
+                                    Status1 = Stat1[0] - '0';
+                                }
+                                else {
+                                    Status1 = 6;
+                                }
                                 unsigned int row1, col1;
                                 complex a;
                                 switch (Status1) {
@@ -751,7 +814,7 @@ int main()
                                         }
                                         Matrix<complex> test1(arr1, row1, col1);
                                         double Norm;
-                                        Norm = test1.MatrixNorm();
+                                        Norm = test1.GetNorm();
                                         std::cout << "Result norm: " << Norm << std::endl;
                                         break;
                                     }
@@ -759,9 +822,16 @@ int main()
                                     {
                                         PrintStringConversions();
                                         int Status2 = 0;
+                                        std::string Stat2;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Status2;
+                                            std::cin >> Stat2;
+                                            if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
+                                                Status2 = Stat2[0] - '0';
+                                            }
+                                            else {
+                                                Status2 = 5;
+                                            }
                                             switch (Status2) {
                                                 case 0:
                                                 {
@@ -845,7 +915,7 @@ int main()
                                                 }
                                                 default:
                                                 {
-                                                    std::cout << "Unknown programm" << std::endl;
+                                                    std::cout << "Unknown Command" << std::endl;
                                                 }
                                             }
                                             if (Status2 != 0)
@@ -859,9 +929,16 @@ int main()
                                     {
                                         PrintColumnConversions();
                                         int Status2 = 0;
+                                        std::string Stat2;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Status2;
+                                            std::cin >> Stat2;
+                                            if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
+                                                Status2 = Stat2[0] - '0';
+                                            }
+                                            else {
+                                                Status2 = 5;
+                                            }
                                             switch (Status2) {
                                                 case 0:
                                                 {
@@ -945,7 +1022,7 @@ int main()
                                                 }
                                                 default:
                                                 {
-                                                    std::cout << "Unknown programm" << std::endl;
+                                                    std::cout << "Unknown Command" << std::endl;
                                                 }
                                             }
                                             if (Status2 != 0)
@@ -984,10 +1061,17 @@ int main()
             case 3:
             {
                 int Status = 0;
+                std::string Stat;
                 int Flag3 = 1;
                 PrintCase(3);
                 while (Flag3 != 0) {
-                    std::cin >> Status;
+                    std::cin >> Stat;
+                    if (Stat.length() == 1 && std::isdigit(Stat[0])) {
+                        Status = Stat[0] - '0';
+                    }
+                    else {
+                        Status = 5;
+                    }
                     switch (Status) {
                         case 0:
                         {
@@ -996,17 +1080,24 @@ int main()
                         }
                         case 1:
                         {
-                            LinearShapeTests();
-                            PrintLinearShape(1);
+                            LinearFormTests();
+                            PrintLinearForm(1);
                             break;
                         }
                         case 2:
                         {
                             int Status5 = 0;
+                            std::string Stat5;
                             int Flag5 = 1;
-                            PrintLinearShape(2);
+                            PrintLinearForm(2);
                             while (Flag5 != 0) {
-                                std::cin >> Status5;
+                                std::cin >> Stat5;
+                                if (Stat5.length() == 1 && std::isdigit(Stat5[0])) {
+                                    Status5 = Stat5[0] - '0';
+                                }
+                                else {
+                                    Status5 = 5;
+                                }
                                 int a, b, length1, length2;
                                 switch (Status5) {
                                     case 0:
@@ -1016,106 +1107,106 @@ int main()
                                     }
                                     case 1:
                                     {
-                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cout << "Enter the length of the first LinearForm:\n";
                                         std::cin >> length1;
-                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cout << "Enter the length of the second LinearForm:\n";
                                         std::cin >> length2;
                                         int arr1[length1], arr2[length2];
                                         if (length1 != length2) {
                                             throw std::invalid_argument("different sizes");
                                         }
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
                                         for (int i = 0; i < length2; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<int> linear_shape1(arr1,length1);
-                                        LinearShape<int> linear_shape2(arr2,length2);
-                                        LinearShape<int> *Res = linear_shape1 + linear_shape2;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<int> LinForm1(arr1,length1);
+                                        LinearForm<int> LinForm2(arr2,length2);
+                                        LinearForm<int> *Res = LinForm1 + LinForm2;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 2:
                                     {
-                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cout << "Enter the length of the first LinearForm:\n";
                                         std::cin >> length1;
-                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cout << "Enter the length of the second LinearForm:\n";
                                         std::cin >> length2;
                                         int arr1[length1], arr2[length2];
                                         if (length1 != length2) {
                                             throw std::invalid_argument("different sizes");
                                         }
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
                                         for (int i = 0; i < length2; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<int> linear_shape1(arr1,length1);
-                                        LinearShape<int> linear_shape2(arr2,length2);
-                                        LinearShape<int> *Res = linear_shape1 - linear_shape2;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<int> LinForm1(arr1,length1);
+                                        LinearForm<int> LinForm2(arr2,length2);
+                                        LinearForm<int> *Res = LinForm1 - LinForm2;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 3:
                                     {
-                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cout << "Enter the length of the LinearForm:\n";
                                         std::cin >> length1;
                                         int arr1[length1];
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
-                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        LinearForm<int> LinForm1(arr1,length1);
                                         int scalar;
                                         std::cout << "Enter the scalar in int form:\n";
                                         std::cin >> scalar;
-                                        LinearShape<int> *Res = linear_shape1 * scalar;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<int> *Res = LinForm1 * scalar;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 4:
                                     {
-                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cout << "Enter the length of the LinearForm:\n";
                                         std::cin >> length1;
                                         int arr1[length1];
                                         int arr2[length1];
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
-                                            std::cout << "Enter the x" << i+1 << " element of the LinearShape:\n";
+                                            std::cout << "Enter the x" << i+1 << " element of the LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<int> linear_shape1(arr1,length1);
+                                        LinearForm<int> LinForm1(arr1,length1);
                                         int Result;
-                                        Result = linear_shape1.linear_shapeCalculating(arr2,length1);
+                                        Result = LinForm1.Eval(arr2,length1);
                                         std::cout << "Result Calculating: " << Result << std::endl;
                                         break;
                                     }
                                     default:
                                     {
-                                        PrintLinearShape(Status5);
+                                        PrintLinearForm(Status5);
                                         break;
                                     }
                                 }
                                 if (Status5 != 0)
                                 {
-                                    PrintLinearShape(2);
+                                    PrintLinearForm(2);
                                 }
                             }
                             break;
@@ -1123,10 +1214,17 @@ int main()
                         case 3:
                         {
                             int Status5 = 0;
+                            std::string Stat5;
                             int Flag5 = 1;
-                            PrintLinearShape(3);
+                            PrintLinearForm(3);
                             while (Flag5 != 0) {
-                                std::cin >> Status5;
+                                std::cin >> Stat5;
+                                if (Stat5.length() == 1 && std::isdigit(Stat5[0])) {
+                                    Status5 = Stat5[0] - '0';
+                                }
+                                else {
+                                    Status5 = 5;
+                                }
                                 complex a, b;
                                 int length1, length2;
                                 switch (Status5) {
@@ -1137,113 +1235,113 @@ int main()
                                     }
                                     case 1:
                                     {
-                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cout << "Enter the length of the first LinearForm:\n";
                                         std::cin >> length1;
-                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cout << "Enter the length of the second LinearForm:\n";
                                         std::cin >> length2;
                                         complex arr1[length1], arr2[length2];
                                         if (length1 != length2) {
                                             throw std::invalid_argument("different sizes");
                                         }
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
                                         for (int i = 0; i < length2; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<complex> linear_shape1(arr1,length1);
-                                        LinearShape<complex> linear_shape2(arr2,length2);
-                                        LinearShape<complex> *Res = linear_shape1 + linear_shape2;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<complex> LinForm1(arr1,length1);
+                                        LinearForm<complex> LinForm2(arr2,length2);
+                                        LinearForm<complex> *Res = LinForm1 + LinForm2;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 2:
                                     {
-                                        std::cout << "Enter the length of the first LinearShape:\n";
+                                        std::cout << "Enter the length of the first LinearForm:\n";
                                         std::cin >> length1;
-                                        std::cout << "Enter the length of the second LinearShape:\n";
+                                        std::cout << "Enter the length of the second LinearForm:\n";
                                         std::cin >> length2;
                                         complex arr1[length1], arr2[length2];
                                         if (length1 != length2) {
                                             throw std::invalid_argument("different sizes");
                                         }
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of first LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of first LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
                                         for (int i = 0; i < length2; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of second LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of second LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<complex> linear_shape1(arr1,length1);
-                                        LinearShape<complex> linear_shape2(arr2,length2);
-                                        LinearShape<complex> *Res = linear_shape1 - linear_shape2;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<complex> LinForm1(arr1,length1);
+                                        LinearForm<complex> LinForm2(arr2,length2);
+                                        LinearForm<complex> *Res = LinForm1 - LinForm2;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 3:
                                     {
-                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cout << "Enter the length of the LinearForm:\n";
                                         std::cin >> length1;
                                         complex arr1[length1];
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
                                         }
-                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        LinearForm<complex> LinForm1(arr1,length1);
                                         complex scalar;
                                         std::cout << "Enter the scalar in complex form:\n";
                                         std::cin >> scalar;
-                                        LinearShape<complex> *Res = linear_shape1 * scalar;
-                                        std::cout << "Result LinearShape:\n";
-                                        LinearShapeShow(Res);
+                                        LinearForm<complex> *Res = LinForm1 * scalar;
+                                        std::cout << "Result LinearForm:\n";
+                                        LinearFormShow(Res);
                                         break;
                                     }
                                     case 4:
                                     {
-                                        std::cout << "Enter the length of the LinearShape:\n";
+                                        std::cout << "Enter the length of the LinearForm:\n";
                                         std::cin >> length1;
                                         complex arr1[length1];
                                         complex arr2[length1];
                                         for (int i = 0; i < length1; i++) {
-                                            std::cout << "Enter the " << i+1 << " ratio of the LinearShape:\n";
+                                            std::cout << "Enter the " << i+1 << " ratio of the LinearForm:\n";
                                             std::cin >> a;
                                             arr1[i] = a;
-                                            std::cout << "Enter the x" << i+1 << " element of the LinearShape:\n";
+                                            std::cout << "Enter the x" << i+1 << " element of the LinearForm:\n";
                                             std::cin >> b;
                                             arr2[i] = b;
                                         }
-                                        LinearShape<complex> linear_shape1(arr1,length1);
+                                        LinearForm<complex> LinForm1(arr1,length1);
                                         complex Result;
-                                        Result = linear_shape1.linear_shapeCalculating(arr2,length1);
+                                        Result = LinForm1.Eval(arr2,length1);
                                         std::cout << "Result Calculating: " << Result << std::endl;
                                         break;
                                     }
                                     default:
                                     {
-                                        PrintLinearShape(Status5);
+                                        PrintLinearForm(Status5);
                                         break;
                                     }
                                 }
                                 if (Status5 != 0)
                                 {
-                                    PrintLinearShape(3);
+                                    PrintLinearForm(3);
                                 }
                             }
                             break;
                         }
                         default:
                         {
-                            PrintLinearShape(Status);
+                            PrintLinearForm(Status);
                             break;
                         }
                     }
