@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(lab_3)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 23)
 
 add_executable(lab_3 main.cpp
         Complex.h
@@ -20,6 +20,5 @@ add_executable(lab_3 main.cpp
         Tests/MatrixTests.h
         LinearForm.h
         Tests/LinearFormTests.h
-        LinearForm.h
         ClassConclusions.h
 )

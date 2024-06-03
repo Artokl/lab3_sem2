@@ -19,7 +19,7 @@ int main()
     StartMenu();
     while (Flag)
     {
-        std::cin >> Choise1;
+        std::getline(std::cin, Choise1);
         if (Choise1.length() == 1 && std::isdigit(Choise1[0])) {
             Choise = Choise1[0] - '0';
         }
@@ -42,7 +42,7 @@ int main()
                 PrintCase(1);
                 while (Flag1 != 0)
                 {
-                    std::cin >> Stat;
+                    std::getline(std::cin, Stat);
                     if (Stat.length() == 1 && std::isdigit(Stat[0])) {
                         Status = Stat[0] - '0';
                     }
@@ -70,7 +70,7 @@ int main()
                             PrintVector(2);
                             while (Flag2 != 0)
                             {
-                                std::cin >> Stat1;
+                                std::getline(std::cin, Stat1);
                                 if (Stat1.length() == 1 && std::isdigit(Stat1[0])) {
                                     Status1 = Stat1[0] - '0';
                                 }
@@ -210,7 +210,7 @@ int main()
                             PrintVector(3);
                             while (Flag3 != 0)
                             {
-                                std::cin >> Stat2;
+                                std::getline(std::cin, Stat2);
                                 if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
                                     Status2 = Stat2[0] - '0';
                                 }
@@ -362,7 +362,7 @@ int main()
                 PrintCase(2);
                 while (Flag3 != 0)
                 {
-                    std::cin >> Stat3;
+                    std::getline(std::cin, Stat3);
                     if (Stat3.length() == 1 && std::isdigit(Stat3[0])) {
                         Status = Stat3[0] - '0';
                     }
@@ -388,7 +388,7 @@ int main()
                             int Flag4 = 1;
                             PrintMatrix(2);
                             while (Flag4 != 0) {
-                                std::cin >> Stat4;
+                                std::getline(std::cin, Stat4);
                                 if (Stat4.length() == 1 && std::isdigit(Stat4[0])) {
                                     Status1 = Stat4[0] - '0';
                                 }
@@ -493,7 +493,7 @@ int main()
                                         std::string Stat6;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Stat6;
+                                            std::getline(std::cin, Stat6);
                                             if (Stat6.length() == 1 && std::isdigit(Stat6[0])) {
                                                 Status2 = Stat6[0] - '0';
                                             }
@@ -600,7 +600,7 @@ int main()
                                         std::string Stat2;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Stat2;
+                                            std::getline(std::cin, Stat2);
                                             if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
                                                 Status2 = Stat2[0] - '0';
                                             }
@@ -720,7 +720,7 @@ int main()
                             int Flag4 = 1;
                             PrintMatrix(3);
                             while (Flag4 != 0) {
-                                std::cin >> Stat1;
+                                std::getline(std::cin, Stat1);
                                 if (Stat1.length() == 1 && std::isdigit(Stat1[0])) {
                                     Status1 = Stat1[0] - '0';
                                 }
@@ -932,7 +932,7 @@ int main()
                                         std::string Stat2;
                                         int Flag5 = 1;
                                         while (Flag5 != 0) {
-                                            std::cin >> Stat2;
+                                            std::getline(std::cin, Stat2);
                                             if (Stat2.length() == 1 && std::isdigit(Stat2[0])) {
                                                 Status2 = Stat2[0] - '0';
                                             }
@@ -1065,7 +1065,7 @@ int main()
                 int Flag3 = 1;
                 PrintCase(3);
                 while (Flag3 != 0) {
-                    std::cin >> Stat;
+                    std::getline(std::cin, Stat);
                     if (Stat.length() == 1 && std::isdigit(Stat[0])) {
                         Status = Stat[0] - '0';
                     }
@@ -1091,7 +1091,7 @@ int main()
                             int Flag5 = 1;
                             PrintLinearForm(2);
                             while (Flag5 != 0) {
-                                std::cin >> Stat5;
+                                std::getline(std::cin, Stat5);
                                 if (Stat5.length() == 1 && std::isdigit(Stat5[0])) {
                                     Status5 = Stat5[0] - '0';
                                 }
@@ -1218,7 +1218,7 @@ int main()
                             int Flag5 = 1;
                             PrintLinearForm(3);
                             while (Flag5 != 0) {
-                                std::cin >> Stat5;
+                                std::getline(std::cin, Stat5);
                                 if (Stat5.length() == 1 && std::isdigit(Stat5[0])) {
                                     Status5 = Stat5[0] - '0';
                                 }

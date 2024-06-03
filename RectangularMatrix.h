@@ -1,10 +1,19 @@
 #ifndef RECTANGULARMATRIX_H
 #define RECTANGULARMATRIX_H
 
-#include "ArraySequence.h"
+#include <concepts>
 #include "Abs.h"
+#include "ArraySequence.h"
 
 template <typename T>
+concept Arithmetic = requires(T a, T b) {
+    { a + b } -> std::same_as<T>;
+    { a * b } -> std::same_as<T>;
+    { a - b } -> std::same_as<T>;
+    { a / b } -> std::same_as<T>;
+};
+
+template <Arithmetic T>
 class Matrix {
 private:
     MutableArraySequence<MutableArraySequence<T> *> data;
