@@ -2,9 +2,17 @@
 #define LiNEARForm_H
 
 #include "ArraySequence.h"
-#include "Complex.h"
 
 template <typename T>
+concept Arithmetic1 = requires(T a, T b) {
+    { a + b } -> std::same_as<T>;
+    { a * b } -> std::same_as<T>;
+    { a - b } -> std::same_as<T>;
+    { a / b } -> std::same_as<T>;
+    { T() } -> std::same_as<T>;
+};
+
+template <Arithmetic1 T>
 class LinearForm {
 private:
     MutableArraySequence<T> *data;
@@ -67,21 +75,11 @@ public:
         }
         return Result;
     }
-    int Eval(int *items, int length) const {
+    T Eval(T *items, int length) const {
         if (length != this->GetLength()) {
             throw std::invalid_argument("wrong size");
         }
-        int Result = 0;
-        for (int i = 0; i < this->GetLength(); i++) {
-            Result += (*this)(i) * items[i];
-        }
-        return Result;
-    }
-    complex Eval(complex *items, int length) const {
-        if (length != this->GetLength()) {
-            throw std::invalid_argument("wrong size");
-        }
-        complex Result (0, 0);
+        T Result{};
         for (int i = 0; i < this->GetLength(); i++) {
             Result += (*this)(i) * items[i];
         }

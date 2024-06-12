@@ -1,6 +1,4 @@
 #include <iostream>
-#include <limits>
-
 #include "Ui.h"
 #include "Tests/StandartTests.h"
 #include "Tests/ComplexTests.h"
@@ -407,13 +405,13 @@ int main()
                                     {
                                         int  b;
                                         unsigned int row2, col2;
-                                        std::cout << "Write the number of rows of the first matrix:\n";
+                                        std::cout << "Choose the number of rows of the first matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the first matrix:\n";
+                                        std::cout << "Choose the number of columns of the first matrix: 1, 2\n";
                                         std::cin >> col1;
-                                        std::cout << "Write the number of rows of the second matrix:\n";
+                                        std::cout << "Choose the number of rows of the second matrix: 1, 2\n";
                                         std::cin >> row2;
-                                        std::cout << "Write the number of columns of the second matrix:\n";
+                                        std::cout << "Choose the number of columns of the second matrix: 1, 2\n";
                                         std::cin >> col2;
                                         if (row1 != row2 || col1 != col2)
                                         {
@@ -436,18 +434,41 @@ int main()
                                                 arr2[i*col2 + j] = b;
                                             }
                                         }
-                                        Matrix<int> test1(arr1, row1, col1);
-                                        Matrix<int> test2(arr2, row2, col2);
-                                        Matrix<int> *test3 = test1 + test2;
-                                        std::cout << "Result matrix:\n";
-                                        MatrixShow(test3);
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<int, 1, 1> test1(arr1);
+                                            Matrix<int, 1, 1> test2(arr2);
+                                            Matrix<int, 1, 1> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<int, 1, 2> test1(arr1);
+                                            Matrix<int, 1, 2> test2(arr2);
+                                            Matrix<int, 1, 2> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<int, 2, 1> test1(arr1);
+                                            Matrix<int, 2, 1> test2(arr2);
+                                            Matrix<int, 2, 1> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<int, 2, 2> test1(arr1);
+                                            Matrix<int, 2, 2> test2(arr2);
+                                            Matrix<int, 2, 2> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
                                         break;
                                     }
                                     case 2:
                                     {
-                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                         std::cin >> col1;
                                         auto arr1 = new int[row1 * col1];
                                         for (int i = 0; i < row1; i++) {
@@ -457,20 +478,40 @@ int main()
                                                 arr1[i*col1 + j] = a;
                                             }
                                         }
-                                        Matrix<int> test1(arr1, row1, col1);
                                         int scalar;
                                         std::cout << "Enter scalar in int form:\n";
                                         std::cin >> scalar;
-                                        Matrix<int> *test3 = test1 * scalar;
-                                        std::cout << "Result matrix:\n";
-                                        MatrixShow(test3);
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<int, 1, 1> test1(arr1);
+                                            Matrix<int, 1, 1> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<int, 1, 2> test1(arr1);
+                                            Matrix<int, 1, 2> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<int, 2, 1> test1(arr1);
+                                            Matrix<int, 2, 1> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<int, 2, 2> test1(arr1);
+                                            Matrix<int, 2, 2> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
                                         break;
                                     }
                                     case 3:
                                     {
-                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                         std::cin >> col1;
                                         auto arr1 = new int[row1 * col1];
                                         for (int i = 0; i < row1; i++) {
@@ -480,10 +521,26 @@ int main()
                                                 arr1[i*col1 + j] = a;
                                             }
                                         }
-                                        Matrix<int> test1(arr1, row1, col1);
-                                        double Norm;
-                                        Norm = test1.GetNorm();
-                                        std::cout << "Result matrix: " << Norm << std::endl;
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<int, 1, 1> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm of matrix: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<int, 1, 2> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm of matrix: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<int, 2, 1> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm of matrix: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<int, 2, 2> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm of matrix: " << Norm << std::endl;
+                                        }
                                         break;
                                     }
                                     case 4:
@@ -508,9 +565,9 @@ int main()
                                                 }
                                                 case 1:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -520,20 +577,49 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
-                                                    unsigned int row_1, row_2;
-                                                    std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
-                                                    std::cin >> row_1 >> row_2;
-                                                    test1.swapRows(row_1 - 1, row_2 - 1);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        unsigned int row_1, row_2;
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        unsigned int row_1, row_2;
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        unsigned int row_1, row_2;
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        unsigned int row_1, row_2;
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 2:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -543,23 +629,55 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
                                                     int scalar;
                                                     unsigned int row_1;
-                                                    std::cout << "Enter scalar in int form:\n";
-                                                    std::cin >> scalar;
-                                                    std::cout << "Enter the row you want to multiply:\n";
-                                                    std::cin >> row_1;
-                                                    test1.multiplyRow(row_1 - 1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the row you want to multiply:\n";
+                                                        std::cin >> row_1;
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the row you want to multiply:\n";
+                                                        std::cin >> row_1;
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the row you want to multiply:\n";
+                                                        std::cin >> row_1;
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the row you want to multiply:\n";
+                                                        std::cin >> row_1;
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 3:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -569,16 +687,48 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
                                                     int scalar;
                                                     unsigned int row_1, row_2;
-                                                    std::cout << "Enter scalar in int form:\n";
-                                                    std::cin >> scalar;
-                                                    std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
-                                                    std::cin >> row_1 >> row_2;
-                                                    test1.addRows(row_1 - 1, row_2 -1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 default:
@@ -615,9 +765,9 @@ int main()
                                                 }
                                                 case 1:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -627,20 +777,46 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
                                                     unsigned int col_1, col_2;
-                                                    std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
-                                                    std::cin >> col_1 >> col_2;
-                                                    test1.swapCols(col_1 - 1, col_2 - 1);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 2:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -650,23 +826,55 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
                                                     int scalar;
                                                     unsigned int col_1;
-                                                    std::cout << "Enter scalar in int form:\n";
-                                                    std::cin >> scalar;
-                                                    std::cout << "Enter the col you want to multiply:\n";
-                                                    std::cin >> col_1;
-                                                    test1.multiplyCol(col_1 - 1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the col you want to multiply:\n";
+                                                        std::cin >> col_1;
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the col you want to multiply:\n";
+                                                        std::cin >> col_1;
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the col you want to multiply:\n";
+                                                        std::cin >> col_1;
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        std::cout << "Enter scalar in int form:\n";
+                                                        std::cin >> scalar;
+                                                        std::cout << "Enter the col you want to multiply:\n";
+                                                        std::cin >> col_1;
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 3:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new int[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -676,16 +884,42 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<int> test1(arr1, row1, col1);
                                                     int scalar;
                                                     unsigned int col_1, col_2;
                                                     std::cout << "Enter scalar in int form:\n";
                                                     std::cin >> scalar;
-                                                    std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
-                                                    std::cin >> col_1 >> col_2;
-                                                    test1.addCols(col_1 - 1, col_2 -1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<int, 1, 1> test1(arr1);
+                                                        std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<int, 1, 2> test1(arr1);
+                                                        std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<int, 2, 1> test1(arr1);
+                                                        std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<int, 2, 2> test1(arr1);
+                                                        std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
+                                                        std::cin >> col_1 >> col_2;
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 default:
@@ -739,13 +973,13 @@ int main()
                                     {
                                         complex b;
                                         unsigned int row2, col2;
-                                        std::cout << "Write the number of rows of the first matrix:\n";
+                                        std::cout << "Choose the number of rows of the first matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the first matrix:\n";
+                                        std::cout << "Choose the number of columns of the first matrix: 1, 2\n";
                                         std::cin >> col1;
-                                        std::cout << "Write the number of rows of the second matrix:\n";
+                                        std::cout << "Choose the number of rows of the second matrix: 1, 2\n";
                                         std::cin >> row2;
-                                        std::cout << "Write the number of columns of the second matrix:\n";
+                                        std::cout << "Choose the number of columns of the second matrix: 1, 2\n";
                                         std::cin >> col2;
                                         if (row1 != row2 || col1 != col2)
                                         {
@@ -768,18 +1002,41 @@ int main()
                                                 arr2[i*col2 + j] = b;
                                             }
                                         }
-                                        Matrix<complex> test1(arr1, row1, col1);
-                                        Matrix<complex> test2(arr2, row2, col2);
-                                        Matrix<complex> *test3 = test1 + test2;
-                                        std::cout << "Result matrix:\n";
-                                        MatrixShow(test3);
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<complex, 1, 1> test1(arr1);
+                                            Matrix<complex, 1, 1> test2(arr2);
+                                            Matrix<complex, 1, 1> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<complex, 1, 2> test1(arr1);
+                                            Matrix<complex, 1, 2> test2(arr2);
+                                            Matrix<complex, 1, 2> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<complex, 2, 1> test1(arr1);
+                                            Matrix<complex, 2, 1> test2(arr2);
+                                            Matrix<complex, 2, 1> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<complex, 2, 2> test1(arr1);
+                                            Matrix<complex, 2, 2> test2(arr2);
+                                            Matrix<complex, 2, 2> *test3 = test1 + test2;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
                                         break;
                                     }
                                     case 2:
                                     {
-                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                         std::cin >> col1;
                                         auto arr1 = new complex[row1 * col1];
                                         for (int i = 0; i < row1; i++) {
@@ -789,20 +1046,40 @@ int main()
                                                 arr1[i*col1 + j] = a;
                                             }
                                         }
-                                        Matrix<complex> test1(arr1, row1, col1);
                                         complex scalar;
                                         std::cout << "Enter scalar in complex form:\n";
                                         std::cin >> scalar;
-                                        Matrix<complex> *test3 = test1 * scalar;
-                                        std::cout << "Result matrix:\n";
-                                        MatrixShow(test3);
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<complex, 1, 1> test1(arr1);
+                                            Matrix<complex, 1, 1> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<complex, 1, 2> test1(arr1);
+                                            Matrix<complex, 1, 2> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<complex, 2, 1> test1(arr1);
+                                            Matrix<complex, 2, 1> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<complex, 2, 2> test1(arr1);
+                                            Matrix<complex, 2, 2> *test3 = test1 * scalar;
+                                            std::cout << "Result matrix:\n";
+                                            MatrixShow(test3);
+                                        }
                                         break;
                                     }
                                     case 3:
                                     {
-                                        std::cout << "Write the number of rows of the matrix:\n";
+                                        std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                         std::cin >> row1;
-                                        std::cout << "Write the number of columns of the matrix:\n";
+                                        std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                         std::cin >> col1;
                                         auto arr1 = new complex[row1 * col1];
                                         for (int i = 0; i < row1; i++) {
@@ -812,10 +1089,26 @@ int main()
                                                 arr1[i*col1 + j] = a;
                                             }
                                         }
-                                        Matrix<complex> test1(arr1, row1, col1);
-                                        double Norm;
-                                        Norm = test1.GetNorm();
-                                        std::cout << "Result norm: " << Norm << std::endl;
+                                        if (row1 == 1 && col1 == 1) {
+                                            Matrix<complex, 1, 1> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 1 && col1 == 2) {
+                                            Matrix<complex, 1, 2> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 2 && col1 == 1) {
+                                            Matrix<complex, 2, 1> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm: " << Norm << std::endl;
+                                        }
+                                        else if (row1 == 2 && col1 == 2) {
+                                            Matrix<complex, 2, 2> test1(arr1);
+                                            double Norm = test1.GetNorm();
+                                            std::cout << "Result norm: " << Norm << std::endl;
+                                        }
                                         break;
                                     }
                                     case 4:
@@ -840,9 +1133,9 @@ int main()
                                                 }
                                                 case 1:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -852,20 +1145,46 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     unsigned int row_1, row_2;
-                                                    std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
-                                                    std::cin >> row_1 >> row_2;
-                                                    test1.swapRows(row_1 - 1, row_2 - 1);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        std::cout << "Enter row1 and row2 you want to swap in the form of: row1 " " row2:\n";
+                                                        std::cin >> row_1 >> row_2;
+                                                        test1.swapRows(row_1 - 1, row_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 2:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -875,23 +1194,43 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     complex scalar;
                                                     unsigned int row_1;
                                                     std::cout << "Enter scalar in complex form:\n";
                                                     std::cin >> scalar;
                                                     std::cout << "Enter the row you want to multiply:\n";
                                                     std::cin >> row_1;
-                                                    test1.multiplyRow(row_1 - 1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        test1.multiplyRow(row_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 3:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -901,16 +1240,36 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     complex scalar;
                                                     unsigned int row_1, row_2;
                                                     std::cout << "Enter scalar in complex form:\n";
                                                     std::cin >> scalar;
                                                     std::cout << "Enter row1, you want to add with row2*scalar, and row2 in the form of: row1 " " row2:\n";
                                                     std::cin >> row_1 >> row_2;
-                                                    test1.addRows(row_1 - 1, row_2 -1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        test1.addRows(row_1 - 1, row_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 default:
@@ -947,9 +1306,9 @@ int main()
                                                 }
                                                 case 1:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -959,20 +1318,40 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     unsigned int col_1, col_2;
                                                     std::cout << "Enter col1 and col2 you want to swap in the form of: col1 " " col2:\n";
                                                     std::cin >> col_1 >> col_2;
-                                                    test1.swapCols(col_1 - 1, col_2 - 1);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        test1.swapCols(col_1 - 1, col_2 - 1);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 2:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -982,23 +1361,43 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     complex scalar;
                                                     unsigned int col_1;
                                                     std::cout << "Enter scalar in complex form:\n";
                                                     std::cin >> scalar;
                                                     std::cout << "Enter the col you want to multiply:\n";
                                                     std::cin >> col_1;
-                                                    test1.multiplyCol(col_1 - 1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        test1.multiplyCol(col_1 - 1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 case 3:
                                                 {
-                                                    std::cout << "Write the number of rows of the matrix:\n";
+                                                    std::cout << "Choose the number of rows of the matrix: 1, 2\n";
                                                     std::cin >> row1;
-                                                    std::cout << "Write the number of columns of the matrix:\n";
+                                                    std::cout << "Choose the number of columns of the matrix: 1, 2\n";
                                                     std::cin >> col1;
                                                     auto arr1 = new complex[row1 * col1];
                                                     for (int i = 0; i < row1; i++) {
@@ -1008,16 +1407,36 @@ int main()
                                                             arr1[i*col1 + j] = a;
                                                         }
                                                     }
-                                                    Matrix<complex> test1(arr1, row1, col1);
                                                     complex scalar;
                                                     unsigned int col_1, col_2;
                                                     std::cout << "Enter scalar in complex form:\n";
                                                     std::cin >> scalar;
                                                     std::cout << "Enter col1, you want to add with col2*scalar, and col2 in the form of: col1 " " col2:\n";
                                                     std::cin >> col_1 >> col_2;
-                                                    test1.addCols(col_1 - 1, col_2 -1, scalar);
-                                                    std::cout << "Result matrix:\n";
-                                                    MatrixShow(test1);
+                                                    if (row1 == 1 && col1 == 1) {
+                                                        Matrix<complex, 1, 1> test1(arr1);
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 1 && col1 == 2) {
+                                                        Matrix<complex, 1, 2> test1(arr1);
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 1) {
+                                                        Matrix<complex, 2, 1> test1(arr1);
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
+                                                    else if (row1 == 2 && col1 == 2) {
+                                                        Matrix<complex, 2, 2> test1(arr1);
+                                                        test1.addCols(col_1 - 1, col_2 -1, scalar);
+                                                        std::cout << "Result matrix:\n";
+                                                        MatrixShow(test1);
+                                                    }
                                                     break;
                                                 }
                                                 default:

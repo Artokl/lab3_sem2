@@ -25,17 +25,17 @@ template <typename T> void VectorShow(Vector<T> *vec)
     std::cout << vec->Get(vec->GetLength() - 1) << "}";
 }
 
-template <typename T> void MatrixShow(Matrix<T> &matrix) {
-    for (int i = 0; i < matrix.getRows(); ++i) {
-        for (int j = 0; j < matrix.getCols(); ++j) {
+template <typename T, size_t Rows, size_t Cols> void MatrixShow(Matrix<T, Rows, Cols>  &matrix) {
+    for (int i = 0; i < Rows; ++i) {
+        for (int j = 0; j < Cols; ++j) {
             std::cout << (matrix)(i, j) << " ";
         }
         std::cout << std::endl;
     }
 }
-template <typename T> void MatrixShow(Matrix<T> *matrix) {
-    for (int i = 0; i < matrix->getRows(); ++i) {
-        for (int j = 0; j < matrix->getCols(); ++j) {
+template <typename T, size_t Rows, size_t Cols> void MatrixShow(Matrix<T, Rows, Cols> *matrix) {
+    for (int i = 0; i < Rows; ++i) {
+        for (int j = 0; j < Cols; ++j) {
             std::cout << (*matrix)(i, j) << " ";
         }
         std::cout << std::endl;
